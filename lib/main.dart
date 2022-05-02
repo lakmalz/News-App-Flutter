@@ -12,7 +12,7 @@ main() async {
 
 class Application extends StatelessWidget {
   const Application({Key? key}) : super(key: key);
-
+  //TODO Theme management
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(

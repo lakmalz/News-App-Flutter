@@ -39,6 +39,7 @@ dependencies:
   retrofit: ^2.2.0
   dartz: ^0.10.1
   flutter_easyloading: ^3.0.3
+  font_awesome_flutter: ^10.1.0
   
 
 dev_dependencies:
