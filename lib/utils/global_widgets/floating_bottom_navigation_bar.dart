@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:news_app/utils/enum.dart';
 import 'package:news_app/utils/extension.dart';
+import 'package:news_app/utils/styles/theme_extension.dart';
 
 class FloatingBottomNavigationBar extends StatelessWidget {
   const FloatingBottomNavigationBar({
@@ -29,24 +29,24 @@ class FloatingBottomNavigationBar extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             _buildTabIcon(
-              icon: const FaIcon(FontAwesomeIcons.houseCrack),
+              icon: 'assets/images/ic_home.png',
               iconColor: selectedIndex == eBottomNavigation.home.tabIndex
-                  ? Colors.pink.shade200
-                  : Colors.grey,
+                  ? context.primaryColor
+                  : context.greyColor,
               onPressed: () => onTap(eBottomNavigation.home.tabIndex),
             ),
-             _buildTabIcon(
-              icon: const FaIcon(FontAwesomeIcons.heart),
+            _buildTabIcon(
+              icon: 'assets/images/ic_favourite.png',
               iconColor: selectedIndex == eBottomNavigation.favourite.tabIndex
-                  ? Colors.pink.shade200
-                  : Colors.grey,
+                  ? context.primaryColor
+                  : context.greyColor,
               onPressed: () => onTap(eBottomNavigation.favourite.tabIndex),
             ),
             _buildTabIcon(
-              icon: const FaIcon(FontAwesomeIcons.personRifle),
+              icon: 'assets/images/ic_profile.png',
               iconColor: selectedIndex == eBottomNavigation.profile.tabIndex
-                  ? Colors.pink.shade200
-                  : Colors.grey,
+                  ? context.primaryColor
+                  : context.greyColor,
               onPressed: () => onTap(eBottomNavigation.profile.tabIndex),
             ),
           ],
@@ -56,26 +56,28 @@ class FloatingBottomNavigationBar extends StatelessWidget {
   }
 
   Widget _buildTabIcon({
-    required Widget icon,
+    required String icon,
     required Color iconColor,
     required VoidCallback onPressed,
   }) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
       child: IconButton(
-        splashColor: Colors.transparent,
-        highlightColor: Colors.transparent,
-        onPressed: onPressed,
-        color: iconColor,
-        icon: icon
-      ),
+          splashColor: Colors.transparent,
+          highlightColor: Colors.transparent,
+          onPressed: onPressed,
+          color: iconColor,
+          icon: Image.asset(
+            icon,
+            color: iconColor,
+          )),
     );
   }
 
-  _boxDecoration() =>  BoxDecoration(
+  _boxDecoration() => BoxDecoration(
         boxShadow: <BoxShadow>[
           BoxShadow(
-            color: Colors.black87.withOpacity(0.05),//TODO
+            color: Colors.black87.withOpacity(0.05), //TODO
             offset: const Offset(0, 25),
             blurRadius: 40,
           ),

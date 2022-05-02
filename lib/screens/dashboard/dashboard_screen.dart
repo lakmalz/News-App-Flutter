@@ -30,7 +30,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      //TODO
       // appBar: AppBar(elevation: 0,backgroundColor: Colors.white,title: const Center(child:  Text('Hot updates', style: appBarTextStyle,)),),
       body: SafeArea(
         child: Obx(() => Container(
