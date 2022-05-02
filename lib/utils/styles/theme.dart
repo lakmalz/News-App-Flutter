@@ -1,4 +1,0 @@
-class Theme{
-
-  Theme._();
-}

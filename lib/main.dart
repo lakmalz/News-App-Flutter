@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:news_app/initial_binding.dart';
 import 'package:news_app/routes/app_pages.dart';
 import 'package:news_app/services/initial_services.dart';
+import 'package:news_app/utils/styles/style.dart';
 
 main() async {
   await initServices();
@@ -19,8 +20,11 @@ class Application extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: '',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
-        
+        primaryColor: Colors.white,
+        textTheme: const TextTheme(
+          titleMedium: regular14pxTextStyle,
+          bodyMedium: regular10pxTextStyle,
+        )
       ),
       initialBinding: InitialBinding(),
       getPages: AppPages.routes,
