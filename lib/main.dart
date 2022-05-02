@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
+import 'package:news_app/initial_binding.dart';
 import 'package:news_app/routes/app_pages.dart';
-import 'package:news_app/services/loading_progress_service.dart';
+import 'package:news_app/services/initial_services.dart';
 
-void main() {
+main() async {
+  await initServices();
   runApp(const Application());
 }
 
@@ -17,12 +20,12 @@ class Application extends StatelessWidget {
       title: '',
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        
       ),
-      initialBinding: BindingsBuilder(() async {
-        await Get.putAsync(() async => LoadingProgressService());
-      }),
+      initialBinding: InitialBinding(),
       getPages: AppPages.routes,
       initialRoute: AppPages.initialScreen,
+      builder: EasyLoading.init(),
     );
   }
 }
