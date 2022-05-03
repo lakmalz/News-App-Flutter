@@ -6,8 +6,8 @@ class RoundedIconButton extends StatelessWidget {
     Key? key,
     required this.onPressed,
     required this.icon,
-    this.width = 34,
-    this.height = 34
+    this.width = 38,
+    this.height = 38
   }) : super(key: key);
 
   final Function() onPressed;

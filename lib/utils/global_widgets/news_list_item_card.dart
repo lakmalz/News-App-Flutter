@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:news_app/utils/global_widgets/created_date_text.dart';
 import 'package:news_app/utils/global_widgets/h_spacer.dart';
 import 'package:news_app/utils/global_widgets/overlay_gradient_view.dart';
 import 'package:news_app/utils/styles/theme_extension.dart';
@@ -50,6 +51,8 @@ class NewsListItemCard extends StatelessWidget {
       right: 16,
       bottom: 8,
       child: Row(
+        // TODO
+        // mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Expanded(
             child: Text(content ?? '',
@@ -58,11 +61,7 @@ class NewsListItemCard extends StatelessWidget {
                 style: context.semibold12pxTextStyle(context.whiteColor)),
           ),
           const HSpacer(space: 24),
-          Text(
-            createdDate ?? '',
-            textAlign: TextAlign.right,
-            style: context.semibold12pxTextStyle(context.whiteColor),
-          )
+          const CreatedDateText(createdDate: 'Sunday, 9 May 2022',)
         ],
       ),
     );

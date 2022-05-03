@@ -21,3 +21,4 @@ const icHome = parentPath + 'ic_home.png';
 const icFavourite = parentPath + 'ic_favourite.png';
 const icProfile = parentPath + 'ic_profile.png';
 const icRightArrow = parentPath + 'ic_right_arrow.png';
+const icBack = parentPath + 'ic_back.png';
