@@ -1,12 +1,12 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:news_app/screens/home_screen/home_controller.dart';
 import 'package:news_app/screens/home_screen/widgets/top_heading_slider.dart';
-import 'package:news_app/utils/global_widgets/h.spacer.dart';
+import 'package:news_app/utils/global_widgets/h_spacer.dart';
 import 'package:news_app/utils/global_widgets/rounded_icon_button.dart';
 import 'package:news_app/screens/home_screen/widgets/search_edit_field.dart';
+import 'package:news_app/utils/global_widgets/single_select_chip_list.dart';
 import 'package:news_app/utils/styles/resources_constant.dart';
 import 'package:news_app/utils/styles/theme_extension.dart';
 
@@ -36,6 +36,11 @@ class HomeScreen extends GetView<HomeController> {
             children: [
               _latestHeadingText(context),
               TopHeadingSlider(),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 16),
+                child: SingleSelectChipList(
+                    chipString: sourceList, extraOnToggle: (index) {}),
+              ),
             ],
           ),
         )

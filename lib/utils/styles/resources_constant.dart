@@ -2,6 +2,16 @@ const hintText = 'Dogecoin to the Moon';
 const labelSeeAll = 'See All';
 const labelLatestNews = 'Latest News';
 
+const List<String> sourceList = [
+  'Business',
+  'Health',
+  'Technology',
+  'Entertainment',
+  'General',
+  'Science',
+  'Sports'
+];
+
 //Icons path
 const parentPath = 'assets/images/';
 const icSearch = parentPath + 'ic_search.png';
