@@ -7,7 +7,6 @@ import 'package:news_app/screens/profile_screen/profile_screen.dart';
 import 'package:news_app/utils/enum.dart';
 import 'package:news_app/utils/extension.dart';
 import 'package:news_app/utils/global_widgets/floating_bottom_navigation_bar.dart';
-import 'package:news_app/utils/styles/style.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({Key? key}) : super(key: key);
@@ -30,7 +29,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(elevation: 0,backgroundColor: Colors.white,title: const Center(child:  Text('Hot updates', style: appBarTextStyle,)),),
       body: SafeArea(
         child: Obx(() => Container(
               height: Get.height,
@@ -43,7 +41,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     children: _stack,
                   ),
                   Positioned(
-                    bottom: 24,
+                    bottom: 16,
                     right: 0,
                     left: 0,
                     child: Row(
