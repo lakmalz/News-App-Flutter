@@ -6,7 +6,7 @@ import 'package:news_app/screens/home_screen/home_screen.dart';
 import 'package:news_app/screens/profile_screen/profile_screen.dart';
 import 'package:news_app/utils/enum.dart';
 import 'package:news_app/utils/extension.dart';
-import 'package:news_app/utils/global_widgets/floating_bottom_navigation_bar.dart';
+import 'package:news_app/screens/dashboard/widgets/floating_bottom_navigation_bar.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({Key? key}) : super(key: key);

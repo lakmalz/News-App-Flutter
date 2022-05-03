@@ -6,17 +6,21 @@ class RoundedIconButton extends StatelessWidget {
     Key? key,
     required this.onPressed,
     required this.icon,
+    this.width = 34,
+    this.height = 34
   }) : super(key: key);
 
   final Function() onPressed;
   final Widget icon;
+  final double width;
+  final double height;
 
   @override
   Widget build(BuildContext context) {
     return Center(
       child: Container(
-        width: 42,
-        height: 42,
+        width: width,
+        height: height,
         decoration: ShapeDecoration(
           shape: const CircleBorder(),
           gradient: context.buttonLinearGradient,

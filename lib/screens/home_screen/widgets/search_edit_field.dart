@@ -16,7 +16,7 @@ class SearchEditField extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: SizedBox(
-        height: 42,
+        height: 34,
         child: TextField(
           onChanged: onChanged,
           onTap: onTap,
