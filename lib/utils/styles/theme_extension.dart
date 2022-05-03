@@ -42,7 +42,7 @@ extension StyleThemeContext on BuildContext {
 
   LinearGradient get cardOverlayLinearGradient => LinearGradient(
         colors: [
-          Colors.black.withOpacity(0.7),
+          Colors.black.withOpacity(0.5),
           Colors.transparent,
         ],
         begin: Alignment.bottomRight,
@@ -74,6 +74,14 @@ extension StyleThemeContext on BuildContext {
       );
 
   //Font style New York
+
+  TextStyle? newyorkSemibold14pxTextStyle(Color color) => TextStyle(
+        fontFamily: newYorkDefault,
+        fontSize: textSize14px,
+        fontWeight:FontWeight.w500,
+        color: color,
+      );
+
   TextStyle? newyorkBold16pxTextStyle(Color color) => TextStyle(
         fontFamily: newYorkDefault,
         fontWeight: FontWeight.bold,

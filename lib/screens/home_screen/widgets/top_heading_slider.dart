@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:news_app/utils/global_widgets/overlay_gradient_view.dart';
 import 'package:news_app/utils/global_widgets/v_spacer.dart';
 import 'package:news_app/utils/styles/theme_extension.dart';
 
@@ -31,7 +32,7 @@ class TopHeadingSlider extends StatelessWidget {
                     child: Stack(
                       children: [
                         _image(context, _img),
-                        _overlayShadow(context),
+                        const OverlayGradientView(),
                         Padding(
                           padding: const EdgeInsets.all(16.0),
                           child: Column(
@@ -90,19 +91,9 @@ class TopHeadingSlider extends StatelessWidget {
     );
   }
 
-  Container _overlayShadow(BuildContext context) {
-    return Container(
-      height: MediaQuery.of(context).size.height,
-      decoration: ShapeDecoration(
-        shape: const RoundedRectangleBorder(),
-        gradient: context.cardOverlayLinearGradient,
-      ),
-    );
-  }
-
   CarouselOptions _carouseOptions() {
     return CarouselOptions(
-        height: Get.width / 1.8,
+        height: Get.width / 1.7,
         enlargeCenterPage: true,
         initialPage: 1,
         enlargeStrategy: CenterPageEnlargeStrategy.height);

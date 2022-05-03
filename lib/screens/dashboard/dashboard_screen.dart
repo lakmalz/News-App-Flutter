@@ -31,7 +31,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
     return Scaffold(
       body: SafeArea(
         child: Obx(() => Container(
-              height: Get.height,
+              // height: Get.height,//TODO
               width: Get.width,
               color: Colors.grey.shade100,
               child: Stack(

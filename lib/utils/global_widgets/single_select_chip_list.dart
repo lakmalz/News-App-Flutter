@@ -3,9 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:news_app/utils/styles/theme_extension.dart';
 
 class SingleSelectChipList extends StatelessWidget {
-  const SingleSelectChipList({Key? key, required this.chipString, required this.extraOnToggle}) : super(key: key);
+  const SingleSelectChipList({Key? key,required this.initialIndex, required this.chipString, required this.extraOnToggle}) : super(key: key);
   final List<String> chipString;
-  final Function(int)? extraOnToggle;
+  final Function(int) extraOnToggle;
+  final int initialIndex;
   
   @override
   Widget build(BuildContext context) {
@@ -17,10 +18,11 @@ class SingleSelectChipList extends StatelessWidget {
                   activeTextColorList: [context.whiteColor],
                   inactiveTextColorList: [context.brownColor],
                   inactiveBorderColorList: [context.greyColor.withOpacity(0.2)],
-                  listOfChipIndicesCurrentlySeclected: [0],
-                  // listOfChipIndicesCurrentlySeclected: [_currentIndex],
+                  listOfChipIndicesCurrentlySeclected: [initialIndex],
                   activeBorderColorList: [context.greyColor.withOpacity(0.2)],
-                  extraOnToggle: extraOnToggle,
+                  extraOnToggle: (va){
+                    extraOnToggle(va);
+                  },
                 );
   }
 }
