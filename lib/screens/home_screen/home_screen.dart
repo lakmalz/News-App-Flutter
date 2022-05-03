@@ -8,7 +8,7 @@ import 'package:news_app/utils/global_widgets/rounded_icon_button.dart';
 import 'package:news_app/screens/home_screen/widgets/search_edit_field.dart';
 import 'package:news_app/utils/global_widgets/single_select_chip_list.dart';
 import 'package:news_app/utils/global_widgets/v_spacer.dart';
-import 'package:news_app/utils/styles/resources_constant.dart';
+import 'package:news_app/utils/resources_constant.dart';
 import 'package:news_app/utils/styles/theme_extension.dart';
 
 class HomeScreen extends GetView<HomeController> {

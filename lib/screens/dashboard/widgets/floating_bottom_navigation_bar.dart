@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:news_app/utils/enum.dart';
 import 'package:news_app/utils/extension.dart';
-import 'package:news_app/utils/styles/resources_constant.dart';
+import 'package:news_app/utils/resources_constant.dart';
 import 'package:news_app/utils/styles/theme_extension.dart';
 
 class FloatingBottomNavigationBar extends StatelessWidget {

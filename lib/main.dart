@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
-import 'package:news_app/initial_binding.dart';
+import 'package:news_app/utils/initial_binding.dart';
 import 'package:news_app/routes/app_pages.dart';
 import 'package:news_app/services/initial_services.dart';
 import 'package:news_app/utils/styles/theme_extension.dart';

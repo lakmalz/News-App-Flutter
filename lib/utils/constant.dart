@@ -1,0 +1,1 @@
+const PARAMS_SEARCH_KEY = 'SEAR_KEY';

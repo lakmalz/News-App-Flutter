@@ -8,10 +8,10 @@ class NewsRepository {
   final ApiClient _apiClient = Get.find();
 
   Future<Either<Failure, NewsListResponse>> searchNewsByTopicAndKey(
-      String searchKey, String topic) async {
+      String searchKey, String scope) async {
     try {
       final response =
-          await _apiClient.searchNewsByTopicAndKey(searchKey, topic);
+          await _apiClient.searchNewsByTopicAndKey(searchKey, scope);
 
       if (response.isSuccess()) {
         return Right(response);

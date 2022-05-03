@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:news_app/utils/styles/resources_constant.dart';
+import 'package:news_app/utils/resources_constant.dart';
 import 'package:news_app/utils/styles/theme_extension.dart';
 
 class SearchEditField extends StatelessWidget {

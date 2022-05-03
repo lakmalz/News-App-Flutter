@@ -10,7 +10,7 @@ abstract class ApiClient {
 
   @GET('/everything')
   Future<NewsListResponse> searchNewsByTopicAndKey(
-      @Query('q') String searchKey, @Query('sources') String topic);
+      @Query('q') String searchKey, @Query('sources') String scope);
 
   @GET('/top-headlines')
   Future<NewsListResponse> topHeadlines(@Query('country') String country);
