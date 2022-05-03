@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:news_app/screens/home_screen/home_controller.dart';
 import 'package:news_app/screens/home_screen/widgets/top_heading_slider.dart';
+import 'package:news_app/utils/global_widgets/h.spacer.dart';
 import 'package:news_app/utils/global_widgets/rounded_icon_button.dart';
 import 'package:news_app/screens/home_screen/widgets/search_edit_field.dart';
 import 'package:news_app/utils/styles/resources_constant.dart';
@@ -33,24 +34,29 @@ class HomeScreen extends GetView<HomeController> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Padding(
-                padding:
-                    const EdgeInsets.only(left: 16.0, right: 16.0, bottom: 12),
-                child: Row(
-                  children: [
-                    Text('Latest News',
-                        style: context
-                            .smallNewyork18pxTextStyle(context.blackColor)),
-                    const Spacer(),
-                  
-                  ],
-                ),
-              ),
+              _latestHeadingText(context),
               TopHeadingSlider(),
             ],
           ),
         )
       ],
+    );
+  }
+
+  Padding _latestHeadingText(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(left: 16.0, right: 16.0, bottom: 12),
+      child: Row(
+        children: [
+          Text(labelLatestNews,
+              style: context.smallNewyork18pxTextStyle(context.blackColor)),
+          const Spacer(),
+          Text(labelSeeAll,
+              style: context.semibold12pxTextStyle(context.secondaryColor)),
+          const HSpacer(space: 8),
+          Image.asset(icRightArrow)
+        ],
+      ),
     );
   }
 }

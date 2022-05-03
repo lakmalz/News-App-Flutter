@@ -42,7 +42,7 @@ extension StyleThemeContext on BuildContext {
 
   LinearGradient get cardOverlayLinearGradient => LinearGradient(
         colors: [
-          Colors.black.withOpacity(0.5),
+          Colors.black.withOpacity(0.7),
           Colors.transparent,
         ],
         begin: Alignment.bottomRight,
@@ -57,6 +57,7 @@ extension StyleThemeContext on BuildContext {
 
   TextStyle? semibold12pxTextStyle(Color color) => GoogleFonts.nunito(
         fontSize: textSize12px,
+        fontWeight:FontWeight.w500,
         color: color,
       );
 

@@ -104,6 +104,7 @@ class TopHeadingSlider extends StatelessWidget {
     return CarouselOptions(
         height: Get.width / 1.8,
         enlargeCenterPage: true,
+        initialPage: 1,
         enlargeStrategy: CenterPageEnlargeStrategy.height);
   }
 
