@@ -22,6 +22,7 @@ class RoundedIconButton extends StatelessWidget {
           gradient: context.buttonLinearGradient,
         ),
         child: MaterialButton(
+          padding: const EdgeInsets.all(0),
           materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
           shape: const CircleBorder(),
           child: icon,
