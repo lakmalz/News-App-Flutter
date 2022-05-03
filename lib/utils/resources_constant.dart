@@ -15,6 +15,7 @@ const List<String> sourceList = [
 //Icons path
 const parentPath = 'assets/images/';
 const icSearch = parentPath + 'ic_search.png';
+const icCancel = parentPath + 'ic_cancel.png';
 const icBell = parentPath + 'ic_bell.png';
 const icHome = parentPath + 'ic_home.png';
 const icFavourite = parentPath + 'ic_favourite.png';

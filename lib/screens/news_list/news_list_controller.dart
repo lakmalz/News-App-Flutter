@@ -9,18 +9,18 @@ class NewsListController extends BaseController {
   final LoadingProgressService _loadingProgress = Get.find();
   final NewsRepository _newsRepository = Get.find();
   RxList<ArticlesModel> articleList = RxList();
-  String? _searchKey;
+  RxString searchKey = ''.obs;
   String? _scope;
 
   @override
   void onInit() {
-    _searchKey = Get.arguments?[PARAMS_SEARCH_KEY];
+    searchKey.value = Get.arguments?[PARAMS_SEARCH_KEY];
     super.onInit();
   }
 
   @override
   void onReady() {
-    searchNewsByTopicAndKey(_searchKey, _scope);
+    searchNewsByTopicAndKey(searchKey.value, _scope);
     super.onReady();
   }
 
