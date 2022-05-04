@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/utils/styles/app_colors.dart';
-import 'package:news_app/utils/styles/styles.dart';
 
 class OverlayGradientView extends StatelessWidget {
   const OverlayGradientView({Key? key}) : super(key: key);

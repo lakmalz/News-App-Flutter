@@ -4,13 +4,13 @@ import 'package:news_app/data/repository/news_repository.dart';
 import 'package:news_app/services/loading_progress_service.dart';
 import 'package:news_app/utils/base_controller.dart';
 import 'package:news_app/utils/constant.dart';
-import 'package:news_app/utils/resources_constant.dart';
+import 'package:news_app/utils/styles/resources.dart';
 
 class NewsListController extends BaseController {
   final LoadingProgressService _loadingProgress = Get.find();
   final NewsRepository _newsRepository = Get.find();
   RxList<ArticlesModel> articleList = RxList();
-  List<String> sourceListWithFilter = ['Filter', ...sourceList];
+  List<String> sourceListWithFilter = ['Filter', ...Resources.sourceList];
   RxInt selectedChipIndex = 0.obs;
   RxString searchKey = ''.obs;
   String? _scope;

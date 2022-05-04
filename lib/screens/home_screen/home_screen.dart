@@ -8,7 +8,7 @@ import 'package:news_app/utils/global_widgets/rounded_icon_button.dart';
 import 'package:news_app/screens/home_screen/widgets/search_edit_field.dart';
 import 'package:news_app/utils/global_widgets/single_select_chip_list.dart';
 import 'package:news_app/utils/global_widgets/v_spacer.dart';
-import 'package:news_app/utils/resources_constant.dart';
+import 'package:news_app/utils/styles/resources.dart';
 import 'package:news_app/utils/styles/app_colors.dart';
 import 'package:news_app/utils/styles/styles.dart';
 
@@ -30,7 +30,7 @@ class HomeScreen extends GetView<HomeController> {
               ),
               RoundedIconButton(
                 onPressed: () {},
-                icon: Image.asset(icBell),
+                icon: Image.asset(Resources.icBell),
               ),
             ],
           ),
@@ -47,7 +47,7 @@ class HomeScreen extends GetView<HomeController> {
                   padding: const EdgeInsets.symmetric(vertical: 16),
                   child: Obx(() => SingleSelectChipList(
                       initialIndex: controller.selectedChipIndex(),
-                      chipString: sourceList,
+                      chipString: Resources.sourceList,
                       extraOnToggle: (index) {
                         controller.selectedChipIndex(index);
                       })),
@@ -72,13 +72,13 @@ class HomeScreen extends GetView<HomeController> {
       padding: const EdgeInsets.only(left: 16.0, right: 16.0, bottom: 12),
       child: Row(
         children: [
-          Text(labelLatestNews,
+          Text(Resources.labelLatestNews,
               style: Styles.smallNewyork18pxTextStyle(AppColors.blackColor)),
           const Spacer(),
-          Text(labelSeeAll,
+          Text(Resources.labelSeeAll,
               style: Styles.semibold12pxTextStyle(AppColors.secondaryColor)),
           const HSpacer(space: 8),
-          Image.asset(icRightArrow)
+          Image.asset(Resources.icRightArrow)
         ],
       ),
     );

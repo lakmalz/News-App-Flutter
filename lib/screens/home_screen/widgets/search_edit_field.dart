@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:news_app/utils/resources_constant.dart';
+import 'package:news_app/utils/styles/resources.dart';
 import 'package:news_app/utils/styles/app_colors.dart';
 import 'package:news_app/utils/styles/styles.dart';
 
@@ -41,8 +41,8 @@ class SearchEditField extends StatelessWidget {
             contentPadding: const EdgeInsets.symmetric(horizontal: 16),
             suffixIcon: InkWell(
                 onTap: onTapSuffixIcon,
-                child: Image.asset(isEnable ? icSearch : icCancel)),
-            hintText: hintText,
+                child: Image.asset(isEnable ? Resources.icSearch : Resources.icCancel)),
+            hintText: Resources.hintText,
             hintStyle: Styles.semibold12pxTextStyle(AppColors.greyHintTextColor),
             focusedBorder: foucuedBorder(context),
             enabledBorder: enabledBorder(context),

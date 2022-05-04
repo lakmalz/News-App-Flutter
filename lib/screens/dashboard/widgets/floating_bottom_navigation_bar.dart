@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:news_app/utils/enum.dart';
 import 'package:news_app/utils/extension.dart';
-import 'package:news_app/utils/resources_constant.dart';
 import 'package:news_app/utils/styles/app_colors.dart';
+import 'package:news_app/utils/styles/resources.dart';
 
 class FloatingBottomNavigationBar extends StatelessWidget {
   const FloatingBottomNavigationBar({
@@ -30,21 +30,21 @@ class FloatingBottomNavigationBar extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             _buildTabIcon(
-              icon: icHome,
+              icon: Resources.icHome,
               iconColor: selectedIndex == eBottomNavigation.home.tabIndex
                   ? AppColors.primaryColor
                   : AppColors.greyColor,
               onPressed: () => onTap(eBottomNavigation.home.tabIndex),
             ),
             _buildTabIcon(
-              icon: icFavourite,
+              icon: Resources.icFavourite,
               iconColor: selectedIndex == eBottomNavigation.favourite.tabIndex
                   ? AppColors.primaryColor
                   : AppColors.greyColor,
               onPressed: () => onTap(eBottomNavigation.favourite.tabIndex),
             ),
             _buildTabIcon(
-              icon: icProfile,
+              icon: Resources.icProfile,
               iconColor: selectedIndex == eBottomNavigation.profile.tabIndex
                   ? AppColors.primaryColor
                   : AppColors.greyColor,
