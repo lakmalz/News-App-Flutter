@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:news_app/utils/global_widgets/overlay_gradient_view.dart';
 import 'package:news_app/utils/global_widgets/v_spacer.dart';
-import 'package:news_app/utils/styles/theme_extension.dart';
+import 'package:news_app/utils/styles/app_colors.dart';
+import 'package:news_app/utils/styles/styles.dart';
 
 class TopHeadingSlider extends StatelessWidget {
   TopHeadingSlider({Key? key, this.onTap}) : super(key: key);
@@ -69,7 +70,7 @@ class TopHeadingSlider extends StatelessWidget {
       content,
       maxLines: 2,
       overflow: TextOverflow.ellipsis,
-      style: context.regular10pxTextStyle(context.whiteColor),
+      style: Styles.regular10pxTextStyle(AppColors.whiteColor),
     );
   }
 
@@ -78,7 +79,7 @@ class TopHeadingSlider extends StatelessWidget {
       title,
       maxLines: 3,
       overflow: TextOverflow.ellipsis,
-      style: context.newyorkBold16pxTextStyle(context.whiteColor),
+      style: Styles.newyorkBold16pxTextStyle(AppColors.whiteColor),
     );
   }
 
@@ -87,7 +88,7 @@ class TopHeadingSlider extends StatelessWidget {
       auther,
       maxLines: 1,
       overflow: TextOverflow.ellipsis,
-      style: context.extraBold10pxTextStyle(context.whiteColor),
+      style: Styles.extraBold10pxTextStyle(AppColors.whiteColor),
     );
   }
 
@@ -104,7 +105,7 @@ class TopHeadingSlider extends StatelessWidget {
       borderRadius: BorderRadius.circular(12.0),
       boxShadow: [
         BoxShadow(
-          color: context.greyColor,
+          color: AppColors.greyColor,
           spreadRadius: 0.5,
           blurRadius: 4,
         ),
@@ -114,7 +115,7 @@ class TopHeadingSlider extends StatelessWidget {
 
   Container placeholder(BuildContext context) {
     return Container(
-      color: context.borderColor.withOpacity(0.2),
+      color: AppColors.borderColor.withOpacity(0.2),
       width: Get.width,
       height: Get.height,
     );

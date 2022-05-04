@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:get/instance_manager.dart';
 import 'package:news_app/data/repository/news_repository.dart';
 import 'package:news_app/screens/dashboard/dashboard_controller.dart';

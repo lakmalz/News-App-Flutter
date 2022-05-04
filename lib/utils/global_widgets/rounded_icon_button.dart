@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:news_app/utils/styles/theme_extension.dart';
+import 'package:news_app/utils/styles/app_colors.dart';
 
 class RoundedIconButton extends StatelessWidget {
   const RoundedIconButton({
@@ -23,7 +23,7 @@ class RoundedIconButton extends StatelessWidget {
         height: height,
         decoration: ShapeDecoration(
           shape: const CircleBorder(),
-          gradient: context.buttonLinearGradient,
+          gradient: AppColors.buttonLinearGradient,
         ),
         child: MaterialButton(
           padding: const EdgeInsets.all(0),

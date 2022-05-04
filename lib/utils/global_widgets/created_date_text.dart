@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:news_app/utils/styles/theme_extension.dart';
+import 'package:news_app/utils/styles/styles.dart';
 
 class CreatedDateText extends StatelessWidget {
   const CreatedDateText({Key? key, this.createdDate, this.color = Colors.white})
@@ -11,7 +11,7 @@ class CreatedDateText extends StatelessWidget {
     return Text(
       createdDate ?? '',
       textAlign: TextAlign.right,
-      style: context.semibold12pxTextStyle(color),
+      style: Styles.semibold12pxTextStyle(color),
     );
   }
 }

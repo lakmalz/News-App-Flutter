@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/utils/resources_constant.dart';
-import 'package:news_app/utils/styles/theme_extension.dart';
+import 'package:news_app/utils/styles/app_colors.dart';
+import 'package:news_app/utils/styles/styles.dart';
 
 class SearchEditField extends StatelessWidget {
   SearchEditField(
@@ -35,14 +36,14 @@ class SearchEditField extends StatelessWidget {
           onChanged: onChanged,
           maxLines: 1,
           textAlign: TextAlign.left,
-          style: context.semibold12pxTextStyle(context.focusedTextColor),
+          style: Styles.semibold12pxTextStyle(AppColors.focusedTextColor),
           decoration: InputDecoration(
             contentPadding: const EdgeInsets.symmetric(horizontal: 16),
             suffixIcon: InkWell(
                 onTap: onTapSuffixIcon,
                 child: Image.asset(isEnable ? icSearch : icCancel)),
             hintText: hintText,
-            hintStyle: context.semibold12pxTextStyle(context.greyHintTextColor),
+            hintStyle: Styles.semibold12pxTextStyle(AppColors.greyHintTextColor),
             focusedBorder: foucuedBorder(context),
             enabledBorder: enabledBorder(context),
             border: enabledBorder(context),
@@ -53,11 +54,11 @@ class SearchEditField extends StatelessWidget {
   }
 
   enabledBorder(BuildContext context) => OutlineInputBorder(
-      borderSide: BorderSide(color: context.greyHintTextColor.withOpacity(0.2)),
+      borderSide: BorderSide(color: AppColors.greyHintTextColor.withOpacity(0.2)),
       borderRadius: BorderRadius.circular(25.0));
 
   foucuedBorder(BuildContext context) => OutlineInputBorder(
-      borderSide: BorderSide(color: context.greyHintTextColor.withOpacity(0.5)),
+      borderSide: BorderSide(color: AppColors.greyHintTextColor.withOpacity(0.5)),
       borderRadius: BorderRadius.circular(25.0));
 }
 

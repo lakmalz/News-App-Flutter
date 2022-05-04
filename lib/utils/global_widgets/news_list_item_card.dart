@@ -4,7 +4,8 @@ import 'package:get/get.dart';
 import 'package:news_app/utils/global_widgets/created_date_text.dart';
 import 'package:news_app/utils/global_widgets/h_spacer.dart';
 import 'package:news_app/utils/global_widgets/overlay_gradient_view.dart';
-import 'package:news_app/utils/styles/theme_extension.dart';
+import 'package:news_app/utils/styles/app_colors.dart';
+import 'package:news_app/utils/styles/styles.dart';
 
 class NewsListItemCard extends StatelessWidget {
   const NewsListItemCard({Key? key}) : super(key: key);
@@ -58,7 +59,7 @@ class NewsListItemCard extends StatelessWidget {
             child: Text(content ?? '',
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
-                style: context.semibold12pxTextStyle(context.whiteColor)),
+                style: Styles.semibold12pxTextStyle(AppColors.whiteColor)),
           ),
           const HSpacer(space: 24),
           const CreatedDateText(createdDate: 'Sunday, 9 May 2022',)
@@ -74,7 +75,7 @@ class NewsListItemCard extends StatelessWidget {
       top: 8,
       child: Text(
         title ?? '',
-        style: context.newyorkSemibold14pxTextStyle(context.whiteColor),
+        style: Styles.newyorkSemibold14pxTextStyle(AppColors.whiteColor),
       ),
     );
   }

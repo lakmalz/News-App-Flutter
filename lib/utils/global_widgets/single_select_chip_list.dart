@@ -1,6 +1,6 @@
 import 'package:chip_list/chip_list.dart';
 import 'package:flutter/material.dart';
-import 'package:news_app/utils/styles/theme_extension.dart';
+import 'package:news_app/utils/styles/app_colors.dart';
 
 class SingleSelectChipList extends StatelessWidget {
   const SingleSelectChipList({Key? key,required this.initialIndex, required this.chipString, required this.extraOnToggle}) : super(key: key);
@@ -13,13 +13,13 @@ class SingleSelectChipList extends StatelessWidget {
     //TODO
     return ChipList(
                   listOfChipNames: chipString,
-                  activeBgColorList: [context.gradeintEndPrimary],
-                  inactiveBgColorList: [context.whiteColor],
-                  activeTextColorList: [context.whiteColor],
-                  inactiveTextColorList: [context.brownColor],
-                  inactiveBorderColorList: [context.greyColor.withOpacity(0.2)],
+                  activeBgColorList: [AppColors.gradeintEndPrimary],
+                  inactiveBgColorList: [AppColors.whiteColor],
+                  activeTextColorList: [AppColors.whiteColor],
+                  inactiveTextColorList: [AppColors.brownColor],
+                  inactiveBorderColorList: [AppColors.greyColor.withOpacity(0.2)],
                   listOfChipIndicesCurrentlySeclected: [initialIndex],
-                  activeBorderColorList: [context.greyColor.withOpacity(0.2)],
+                  activeBorderColorList: [AppColors.greyColor.withOpacity(0.2)],
                   extraOnToggle: (va){
                     extraOnToggle(va);
                   },

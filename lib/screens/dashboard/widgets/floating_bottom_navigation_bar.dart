@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:news_app/utils/enum.dart';
 import 'package:news_app/utils/extension.dart';
 import 'package:news_app/utils/resources_constant.dart';
-import 'package:news_app/utils/styles/theme_extension.dart';
+import 'package:news_app/utils/styles/app_colors.dart';
 
 class FloatingBottomNavigationBar extends StatelessWidget {
   const FloatingBottomNavigationBar({
@@ -21,7 +21,7 @@ class FloatingBottomNavigationBar extends StatelessWidget {
       decoration: _boxDecoration(),
       child: Card(
         elevation: 0,
-        color: context.whiteColor,
+        color: AppColors.whiteColor,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(50),
         ),
@@ -32,22 +32,22 @@ class FloatingBottomNavigationBar extends StatelessWidget {
             _buildTabIcon(
               icon: icHome,
               iconColor: selectedIndex == eBottomNavigation.home.tabIndex
-                  ? context.primaryColor
-                  : context.greyColor,
+                  ? AppColors.primaryColor
+                  : AppColors.greyColor,
               onPressed: () => onTap(eBottomNavigation.home.tabIndex),
             ),
             _buildTabIcon(
               icon: icFavourite,
               iconColor: selectedIndex == eBottomNavigation.favourite.tabIndex
-                  ? context.primaryColor
-                  : context.greyColor,
+                  ? AppColors.primaryColor
+                  : AppColors.greyColor,
               onPressed: () => onTap(eBottomNavigation.favourite.tabIndex),
             ),
             _buildTabIcon(
               icon: icProfile,
               iconColor: selectedIndex == eBottomNavigation.profile.tabIndex
-                  ? context.primaryColor
-                  : context.greyColor,
+                  ? AppColors.primaryColor
+                  : AppColors.greyColor,
               onPressed: () => onTap(eBottomNavigation.profile.tabIndex),
             ),
           ],

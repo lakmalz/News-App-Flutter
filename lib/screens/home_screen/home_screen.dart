@@ -9,7 +9,8 @@ import 'package:news_app/screens/home_screen/widgets/search_edit_field.dart';
 import 'package:news_app/utils/global_widgets/single_select_chip_list.dart';
 import 'package:news_app/utils/global_widgets/v_spacer.dart';
 import 'package:news_app/utils/resources_constant.dart';
-import 'package:news_app/utils/styles/theme_extension.dart';
+import 'package:news_app/utils/styles/app_colors.dart';
+import 'package:news_app/utils/styles/styles.dart';
 
 class HomeScreen extends GetView<HomeController> {
   const HomeScreen({Key? key}) : super(key: key);
@@ -72,10 +73,10 @@ class HomeScreen extends GetView<HomeController> {
       child: Row(
         children: [
           Text(labelLatestNews,
-              style: context.smallNewyork18pxTextStyle(context.blackColor)),
+              style: Styles.smallNewyork18pxTextStyle(AppColors.blackColor)),
           const Spacer(),
           Text(labelSeeAll,
-              style: context.semibold12pxTextStyle(context.secondaryColor)),
+              style: Styles.semibold12pxTextStyle(AppColors.secondaryColor)),
           const HSpacer(space: 8),
           Image.asset(icRightArrow)
         ],
