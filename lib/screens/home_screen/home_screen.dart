@@ -45,12 +45,13 @@ class HomeScreen extends GetView<HomeController> {
                 TopHeadingSlider(),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 16),
-                  child: Obx(() => SingleSelectChipList(
+                  child: Obx(
+                    () => SingleSelectChipList(
                       initialIndex: controller.selectedChipIndex(),
-                      chipString: Resources.sourceList,
-                      extraOnToggle: (index) {
-                        controller.selectedChipIndex(index);
-                      })),
+                      chipString: controller.sourceList,
+                      extraOnToggle: controller.onTapChipNewsCategory,
+                    ),
+                  ),
                 ),
                 Obx(
                   () => ListView.separated(

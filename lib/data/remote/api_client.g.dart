@@ -14,11 +14,13 @@ class _ApiClient implements ApiClient {
   String? baseUrl;
 
   @override
-  Future<NewsListResponse> searchNewsByTopicAndKey(searchKey, topic) async {
+  Future<NewsListResponse> searchByKeyLanguage(
+      searchKey, language, sortBy) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
       r'q': searchKey,
-      r'sources': topic
+      r'language': language,
+      r'sortBy': sortBy
     };
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
@@ -33,9 +35,13 @@ class _ApiClient implements ApiClient {
   }
 
   @override
-  Future<NewsListResponse> topHeadlines(country) async {
+  Future<NewsListResponse> topHeadline(country, category, key) async {
     const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{r'country': country};
+    final queryParameters = <String, dynamic>{
+      r'country': country,
+      r'category': category,
+      r'q': key
+    };
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     final _result = await _dio.fetch<Map<String, dynamic>>(

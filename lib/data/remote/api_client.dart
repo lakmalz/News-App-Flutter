@@ -9,9 +9,16 @@ abstract class ApiClient {
   factory ApiClient(Dio dio, {String baseUrl}) = _ApiClient;
 
   @GET('/everything')
-  Future<NewsListResponse> searchNewsByTopicAndKey(
-      @Query('q') String searchKey, @Query('sources') String scope);
+  Future<NewsListResponse> searchByKeyLanguage(
+    @Query('q') String searchKey,
+    @Query('language')String language,
+    @Query('sortBy')String sortBy,
+  );
 
   @GET('/top-headlines')
-  Future<NewsListResponse> topHeadlines(@Query('country') String country);
+  Future<NewsListResponse> topHeadline(
+    @Query('country') String country,
+    @Query('category') String category,
+    @Query('q') String key,
+  );
 }
