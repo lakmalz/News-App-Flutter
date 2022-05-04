@@ -2,6 +2,7 @@ class Resources {
   static String hintText = 'Dogecoin to the Moon';
   static String labelSeeAll = 'See All';
   static String labelLatestNews = 'Latest News';
+  static String labelFilter = 'Filter';
 
   // News Categories
   static List<String> sourceList = [

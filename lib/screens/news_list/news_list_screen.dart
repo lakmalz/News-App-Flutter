@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:news_app/screens/home_screen/widgets/search_edit_field.dart';
+import 'package:news_app/screens/home_screen/components/search_edit_field.dart';
 import 'package:news_app/screens/news_list/news_list_controller.dart';
 import 'package:news_app/utils/global_widgets/news_list_item_card.dart';
 import 'package:news_app/utils/global_widgets/single_select_chip_list.dart';
 import 'package:news_app/utils/global_widgets/v_spacer.dart';
-import 'package:news_app/utils/resources_constant.dart';
 
 class NewsListScreen extends GetView<NewsListController> {
+
   const NewsListScreen({Key? key}) : super(key: key);
 
   @override
@@ -28,19 +28,28 @@ class NewsListScreen extends GetView<NewsListController> {
                   },
                 ),
               ),
-              Obx(() => SingleSelectChipList(
+              Obx(
+                () => SingleSelectChipList(
                   initialIndex: controller.selectedChipIndex(),
                   chipString: controller.sourceListWithFilter,
-                  extraOnToggle: (index) {
-                    controller.selectedChipIndex(index);
-                  })),
+                  extraOnToggle: controller.onTapChipNewsCategory,
+                ),
+              ),
               Expanded(
                 child: Padding(
-                  padding: const EdgeInsets.only(top:16.0),
-                  child: ListView.separated(
-                    itemBuilder: (_, index) => const NewsListItemCard(),
-                    separatorBuilder: (_, index) => const VSpacer(space: 8),
-                    itemCount: 12,
+                  padding: const EdgeInsets.only(top: 16.0),
+                  child: Obx(
+                    () => ListView.separated(
+                      itemBuilder: (_, index) {
+                        final _item = controller.articleList[index];
+                        return NewsListItemCard(
+                          _item,
+                          onTap: controller.onTapNewsCard,
+                        );
+                      },
+                      separatorBuilder: (_, index) => const VSpacer(space: 8),
+                      itemCount: controller.articleList.length,
+                    ),
                   ),
                 ),
               )

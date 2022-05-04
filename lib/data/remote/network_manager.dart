@@ -40,7 +40,7 @@ class NetworkManager {
         handler.next(res);
       },
       onError: (error, handler) {
-        return handler.next(error);
+        handler.next(error);
       },
     );
   }

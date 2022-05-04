@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:news_app/screens/home_screen/components/search_edit_field.dart';
+import 'package:news_app/screens/home_screen/components/top_heading_slider.dart';
 import 'package:news_app/screens/home_screen/home_controller.dart';
-import 'package:news_app/screens/home_screen/widgets/top_heading_slider.dart';
 import 'package:news_app/utils/global_widgets/h_spacer.dart';
 import 'package:news_app/utils/global_widgets/news_list_item_card.dart';
 import 'package:news_app/utils/global_widgets/rounded_icon_button.dart';
-import 'package:news_app/screens/home_screen/widgets/search_edit_field.dart';
 import 'package:news_app/utils/global_widgets/single_select_chip_list.dart';
 import 'package:news_app/utils/global_widgets/v_spacer.dart';
 import 'package:news_app/utils/styles/resources.dart';
@@ -25,7 +25,7 @@ class HomeScreen extends GetView<HomeController> {
             children: [
               Expanded(
                 child: SearchEditField(
-                  onSubmitted:(value) => controller.onSearch(value),
+                  onSubmitted: (value) => controller.onSearch(value),
                 ),
               ),
               RoundedIconButton(
@@ -52,13 +52,21 @@ class HomeScreen extends GetView<HomeController> {
                         controller.selectedChipIndex(index);
                       })),
                 ),
-                ListView.separated(
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemBuilder: (_, index) => const NewsListItemCard(),
-                  separatorBuilder: (_, index) => const VSpacer(space: 8),
-                  itemCount: 12,
-                  shrinkWrap: true,
-                )
+                Obx(
+                  () => ListView.separated(
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemBuilder: (_, index) {
+                      final _item = controller.articleList[index];
+                      return NewsListItemCard(
+                        _item,
+                        onTap: controller.onTapNewsCard,
+                      );
+                    },
+                    separatorBuilder: (_, index) => const VSpacer(space: 8),
+                    itemCount: controller.articleList().length,
+                    shrinkWrap: true,
+                  ),
+                ),
               ],
             ),
           ),

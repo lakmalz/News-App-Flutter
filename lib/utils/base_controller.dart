@@ -13,14 +13,15 @@ class BaseController extends GetxController {
     }
   }
 
-  _errorAlert(String? title, String? message) {
-    AlertDialog _ = AlertDialog(
+  AlertDialog _errorAlert(String? title, String? message) {
+    AlertDialog alert = AlertDialog(
       title: Text(title ?? error),
       content: Text(message ?? somethingWentWrong),
       actions: [
         _okButton,
       ],
     );
+    return alert;
   }
 
   final Widget _okButton = TextButton(

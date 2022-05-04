@@ -56,14 +56,9 @@ class Failure implements Exception {
         message = receiveTimeout;
         break;
       case DioErrorType.response:
-        message = 'Received invalid status code: ${error.response!.statusCode}';
         if (error.response?.data != null) {
           try {
-            //TODO Customiz error from api
-            // final errorModel = TempError.fromJson(error.response?.data);
-            // title = errorModel.title ?? title;
-            // final msg = errorModel.detail ?? errorModel.message;
-            // message = msg ?? message;
+            message = error.response?.data['message'];
           } catch (e) {
             message = somethingWentWrong;
           }

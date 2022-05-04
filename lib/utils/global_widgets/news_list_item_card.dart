@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:news_app/data/models/articles_model.dart';
 import 'package:news_app/utils/global_widgets/created_date_text.dart';
 import 'package:news_app/utils/global_widgets/h_spacer.dart';
 import 'package:news_app/utils/global_widgets/overlay_gradient_view.dart';
@@ -8,12 +9,9 @@ import 'package:news_app/utils/styles/app_colors.dart';
 import 'package:news_app/utils/styles/styles.dart';
 
 class NewsListItemCard extends StatelessWidget {
-  const NewsListItemCard({Key? key}) : super(key: key);
-
-//TODO
-  final String _img =
-      'https://images.unsplash.com/photo-1633075389979-5373cd619588?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2232&q=80';
-
+  const NewsListItemCard(this.item, {Key? key, this.onTap}) : super(key: key);
+  final ArticlesModel item;
+  final Function(ArticlesModel)? onTap;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -24,10 +22,14 @@ class NewsListItemCard extends StatelessWidget {
         child: ClipRRect(
           borderRadius: BorderRadius.circular(12.0),
           child: InkWell(
-            onTap: () {},
+            onTap: () {
+              if(onTap == null ) return;
+              
+              onTap!(item);
+            },
             child: Stack(
               children: [
-                _image(context, _img),
+                _image(context, item.urlToImage),
                 const OverlayGradientView(),
                 _headerTitle(
                     context, '5 things to know about the conunfrum of lupus'),
@@ -62,7 +64,9 @@ class NewsListItemCard extends StatelessWidget {
                 style: Styles.semibold12pxTextStyle(AppColors.whiteColor)),
           ),
           const HSpacer(space: 24),
-          const CreatedDateText(createdDate: 'Sunday, 9 May 2022',)
+          const CreatedDateText(
+            createdDate: 'Sunday, 9 May 2022',
+          )
         ],
       ),
     );

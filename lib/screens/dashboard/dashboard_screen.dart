@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:news_app/screens/dashboard/components/floating_bottom_navigation_bar.dart';
 import 'package:news_app/screens/dashboard/dashboard_controller.dart';
 import 'package:news_app/screens/favourite_screen/favourite_screen.dart';
 import 'package:news_app/screens/home_screen/home_screen.dart';
 import 'package:news_app/screens/profile_screen/profile_screen.dart';
 import 'package:news_app/utils/enum.dart';
 import 'package:news_app/utils/extension.dart';
-import 'package:news_app/screens/dashboard/widgets/floating_bottom_navigation_bar.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({Key? key}) : super(key: key);
@@ -31,7 +31,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
     return Scaffold(
       body: SafeArea(
         child: Obx(() => Container(
-              // height: Get.height,//TODO
               width: Get.width,
               color: Colors.grey.shade100,
               child: Stack(
