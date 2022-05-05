@@ -4,10 +4,12 @@ import 'package:news_app/screens/home_screen/components/search_edit_field.dart';
 import 'package:news_app/screens/news_list/news_list_controller.dart';
 import 'package:news_app/utils/global_widgets/data_empty.dart';
 import 'package:news_app/utils/global_widgets/news_list_item_card.dart';
+import 'package:news_app/utils/global_widgets/refresh_custom_footer.dart';
 import 'package:news_app/utils/global_widgets/single_select_chip_list.dart';
 import 'package:news_app/utils/global_widgets/v_spacer.dart';
 import 'package:news_app/utils/styles/app_colors.dart';
 import 'package:news_app/utils/styles/styles.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 class NewsListScreen extends GetView<NewsListController> {
   const NewsListScreen({Key? key}) : super(key: key);
@@ -37,48 +39,49 @@ class NewsListScreen extends GetView<NewsListController> {
                   extraOnToggle: controller.onTapChipNewsCategory,
                 ),
               ),
-              Obx(
-                () => !controller.isLoading()
-                    ? Container(
-                        margin:
-                            const EdgeInsets.only(top: 16, left: 16, right: 16),
-                        alignment: Alignment.topLeft,
-                        child: RichText(
-                          text: TextSpan(
-                            style: Styles.semibold14pxTextStyle(
-                                AppColors.blackColor),
-                            children: [
-                              TextSpan(
-                                  text:
-                                      'About ${controller.searchResultCount()} result for '),
-                              TextSpan(
-                                  text: controller.searchKey(),
-                                  style: Styles.bold14pxTextStyle(
-                                      AppColors.blackColor)),
-                            ],
-                          ),
-                        ),
-                      )
-                    : const SizedBox(),
-              ),
+              Obx(() => Container(
+                    margin: const EdgeInsets.only(top: 16, left: 16, right: 16),
+                    alignment: Alignment.topLeft,
+                    child: RichText(
+                      text: TextSpan(
+                        style:
+                            Styles.semibold14pxTextStyle(AppColors.blackColor),
+                        children: [
+                          TextSpan(
+                              text:
+                                  'About ${controller.searchResultCount()} result for '),
+                          TextSpan(
+                              text: controller.searchKey(),
+                              style: Styles.bold14pxTextStyle(
+                                  AppColors.blackColor)),
+                        ],
+                      ),
+                    ),
+                  )),
               Expanded(
                 child: Padding(
                   padding: const EdgeInsets.only(top: 16.0),
                   child: Obx(
-                    () => controller.isNewsAvailable()
-                        ? ListView.separated(
-                            itemBuilder: (_, index) {
-                              final _item = controller.articleList[index];
-                              return NewsListItemCard(_item,
-                                  onTap: controller.onTapNewsCard);
-                            },
-                            separatorBuilder: (_, index) =>
-                                const VSpacer(space: 8),
-                            itemCount: controller.articleList.length,
-                          )
-                        : controller.isLoading()
-                            ? const SizedBox()
-                            : const DataEmpty(), 
+                    () => SmartRefresher(
+                        enablePullDown: true,
+                        enablePullUp: true,
+                        header: const WaterDropHeader(),
+                        footer: const CustomFooterRefresher(),
+                        controller: controller.refreshController,
+                        onLoading: controller.onLoading,
+                        onRefresh: controller.onRefresh,
+                        child: ListView.separated(
+                          itemBuilder: (_, index) {
+                            final _item = controller.articleList[index];
+                            return NewsListItemCard(
+                              _item,
+                              onTap: controller.onTapNewsCard,
+                            );
+                          },
+                          separatorBuilder: (_, index) =>
+                              const VSpacer(space: 8),
+                          itemCount: controller.articleList.length,
+                        )),
                   ),
                 ),
               )

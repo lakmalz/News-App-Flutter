@@ -13,6 +13,8 @@ abstract class ApiClient {
     @Query('q') String searchKey,
     @Query('language')String language,
     @Query('sortBy')String sortBy,
+    @Query('page') int page,
+    @Query('pageSize') int pageSize,
   );
 
   @GET('/top-headlines')
@@ -20,5 +22,8 @@ abstract class ApiClient {
     @Query('country') String country,
     @Query('category') String category,
     @Query('q') String key,
+    @Query('page') int page,
+    @Query('pageSize') int pageSize,
+
   );
 }

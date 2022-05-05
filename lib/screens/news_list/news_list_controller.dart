@@ -6,10 +6,11 @@ import 'package:news_app/routes/app_routes.dart';
 import 'package:news_app/services/loading_progress_service.dart';
 import 'package:news_app/utils/base_controller.dart';
 import 'package:news_app/utils/constant.dart';
+import 'package:news_app/utils/page_helper.dart';
 import 'package:news_app/utils/styles/resources.dart';
 import 'package:intl/intl.dart';
 
-class NewsListController extends BaseController {
+class NewsListController extends BaseController with PageHelper {
   final LoadingProgressService _loadingProgress = Get.find();
   final NewsRepository _newsRepository = Get.find();
   List<String> sourceListWithFilter = [
@@ -23,58 +24,71 @@ class NewsListController extends BaseController {
   RxString searchKey = ''.obs;
   RxString _sortBy = ''.obs;
   RxString searchResultCount = '0'.obs;
-  String? _category;
+  String _category = Resources.labelFilter;
 
   @override
   void onInit() {
     searchKey.value = Get.arguments?[PARAMS_SEARCH_KEY];
-    ever(newsListResponse, (_) {
-      searchResultCount.value = numberFormater.format(newsListResponse.value?.totalResults ?? 0);
-      articleList(newsListResponse.value?.articles ?? []);
-    });
+    dataListeners();
     super.onInit();
   }
 
   @override
   void onReady() {
-    getFilterData();
+    getData(true);
     super.onReady();
   }
 
-  getFilterData() {
-    //TODO en use for testing purpose
-    searchByKeyLanguage(searchKey.value, 'en', _sortBy.value);
+  dataListeners() {
+    ever(newsListResponse, (_) {
+      searchResultCount.value =
+          numberFormater.format(newsListResponse.value?.totalResults ?? 0);
+
+      if (articleList.isEmpty) {
+        articleList(newsListResponse.value?.articles ?? []);
+      } else {
+        articleList.addAll(newsListResponse.value?.articles ?? []);
+      }
+    });
   }
 
-  getCategoryData() {
-    // TODO us for testing purpose
-    getNewsByCategory('us', searchKey.value, _category ?? '');
+  Future getData(bool isInitialLoading) async {
+    if (_category == Resources.labelFilter) {
+      await searchByKeyLanguage(
+          searchKey.value, 'en', _sortBy.value, page, isInitialLoading);
+    } else {
+      await getNewsByCategory(
+          'us', searchKey.value, _category ?? '', page, isInitialLoading);
+    }
   }
 
   // Search news by passing search key word, language
   // and sortby few sort category
-  searchByKeyLanguage(String searchKey, String language, sortBy) async {
-    _loadingProgress.show();
-    final _response =
-        await _newsRepository.searchByKeyLanguage(searchKey, language, sortBy);
+  Future searchByKeyLanguage(String searchKey, String language, String sortBy,
+      int page, bool isInitialLoading) async {
+    _loadingProgress.show(isVisible: isInitialLoading);
+    final _response = await _newsRepository
+        .searchByKeyLanguage(searchKey, language, sortBy, page: page);
     await _loadingProgress.hide();
     _response.fold((l) {
       showError(l);
     }, (r) {
+      pageIncrement(r.totalResults ?? 0);
       newsListResponse.value = r;
     });
   }
 
   // Get news by category and search key for user entered country
-  getNewsByCategory(String country, String searchKey, String category) async {
-    _loadingProgress.show();
-    articleList([]);
+  Future getNewsByCategory(String country, String searchKey, String category,
+      int page, bool isInitialLoading) async {
+    _loadingProgress.show(isVisible: isInitialLoading);
     final _response = await _newsRepository.newsByCategory(
-        country: country, category: category, searchKey: searchKey);
+        country: country, category: category, searchKey: searchKey, page: page);
     await _loadingProgress.hide();
     _response.fold((l) {
       showError(l);
     }, (r) {
+      pageIncrement(r.totalResults ?? 0);
       newsListResponse.value = r;
     });
   }
@@ -86,14 +100,29 @@ class NewsListController extends BaseController {
   }
 
   onTapChipNewsCategory(int index) {
+    resetPage();
     selectedChipIndex(index);
     _category = sourceListWithFilter[index];
-    if (_category != Resources.labelFilter) {
-      getCategoryData();
-    }
+    getData(true);
   }
 
   isNewsAvailable() => articleList.isNotEmpty;
 
   isLoading() => _loadingProgress.isVisible;
+
+  onLoading() async {
+    await getData(false);
+  }
+
+  onRefresh() async {
+    refreshController.loadComplete();
+    resetPage();
+    await getData(false);
+    refreshController.refreshCompleted();
+  }
+
+  resetPage() {
+    page = 1;
+    articleList.value = [];
+  }
 }

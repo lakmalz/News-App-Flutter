@@ -1,2 +1,3 @@
 const PARAMS_SEARCH_KEY = 'SEAR_KEY';
 const PARAMS_SELECTED_ARTICLE = 'SELECTED_ARTICLE';
+const pageSize = 20;

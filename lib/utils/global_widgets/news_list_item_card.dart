@@ -1,9 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:news_app/data/models/articles_model.dart';
 import 'package:news_app/utils/global_widgets/created_date_text.dart';
 import 'package:news_app/utils/global_widgets/h_spacer.dart';
+import 'package:news_app/utils/global_widgets/image_placeholder.dart';
 import 'package:news_app/utils/global_widgets/overlay_gradient_view.dart';
 import 'package:news_app/utils/styles/app_colors.dart';
 import 'package:news_app/utils/styles/styles.dart';
@@ -23,21 +25,19 @@ class NewsListItemCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(12.0),
           child: InkWell(
             onTap: () {
-              if(onTap == null ) return;
-              
+              if (onTap == null) return;
+
               onTap!(item);
             },
             child: Stack(
               children: [
                 _image(context, item.urlToImage),
                 const OverlayGradientView(),
-                _headerTitle(
-                    context, '5 things to know about the conunfrum of lupus'),
+                _headerTitle(context, item.title),
                 _contentAndCreatedDate(
                   context,
-                  content:
-                      'Matt Villianosadfsadfasasdfasdf asas dfasdfasd asd asfasdf fasdfasdfasdf asdfas asdfadf ',
-                  createdDate: 'Sunday, 9 May 2021',
+                  content: item.description,
+                  publishedDate: item.publishedAt,
                 ),
               ],
             ),
@@ -48,7 +48,7 @@ class NewsListItemCard extends StatelessWidget {
   }
 
   Positioned _contentAndCreatedDate(BuildContext context,
-      {String? content, String? createdDate}) {
+      {String? content, String? publishedDate}) {
     return Positioned(
       left: 16,
       right: 16,
@@ -64,8 +64,8 @@ class NewsListItemCard extends StatelessWidget {
                 style: Styles.semibold12pxTextStyle(AppColors.whiteColor)),
           ),
           const HSpacer(space: 24),
-          const CreatedDateText(
-            createdDate: 'Sunday, 9 May 2022',
+          CreatedDateText(
+            createdDate: publishedDate,
           )
         ],
       ),
@@ -89,9 +89,8 @@ class NewsListItemCard extends StatelessWidget {
       imageUrl: image ?? '',
       width: Get.width,
       height: Get.width / 3.0,
-      //TODO
-      // placeholder: (_, url) => placeholder(context),
-      // errorWidget: (context, url, error) => placeholder(context),
+      placeholder: (_, url) => const ImagePlaceholder(),
+      errorWidget: (context, url, error) => const ImagePlaceholder(),
       fit: BoxFit.cover,
     );
   }

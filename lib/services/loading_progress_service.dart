@@ -23,8 +23,10 @@ class LoadingProgressService extends GetxService {
     super.onInit();
   }
 
-  show({String? message}) {
-    EasyLoading.show(status: message);
+  show({String? message, bool isVisible = true}) {
+    if (isVisible) {
+      EasyLoading.show(status: message);
+    }
   }
 
   showSuccess({String? message}) {

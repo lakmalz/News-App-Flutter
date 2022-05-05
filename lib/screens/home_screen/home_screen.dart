@@ -4,6 +4,7 @@ import 'package:news_app/screens/home_screen/components/search_edit_field.dart';
 import 'package:news_app/screens/home_screen/components/top_heading_slider.dart';
 import 'package:news_app/screens/home_screen/home_controller.dart';
 import 'package:news_app/utils/global_widgets/h_spacer.dart';
+import 'package:news_app/utils/global_widgets/news_list.dart';
 import 'package:news_app/utils/global_widgets/news_list_item_card.dart';
 import 'package:news_app/utils/global_widgets/rounded_icon_button.dart';
 import 'package:news_app/utils/global_widgets/single_select_chip_list.dart';
@@ -41,31 +42,45 @@ class HomeScreen extends GetView<HomeController> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                _latestHeadingText(context),
-                TopHeadingSlider(),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 16),
-                  child: Obx(
-                    () => SingleSelectChipList(
-                      initialIndex: controller.selectedChipIndex(),
-                      chipString: controller.sourceList,
-                      extraOnToggle: controller.onTapChipNewsCategory,
-                    ),
-                  ),
+                Obx(
+                  () => controller.breakingNewsList().isNotEmpty
+                      ? Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            _latestHeadingText(context),
+                            TopHeadingSlider(
+                              onTap: controller.onTapNewsCard,
+                              sliderList: controller.breakingNewsList(),
+                            ),
+                          ],
+                        )
+                      : const SizedBox(),
                 ),
                 Obx(
-                  () => ListView.separated(
-                    physics: const NeverScrollableScrollPhysics(),
-                    itemBuilder: (_, index) {
-                      final _item = controller.articleList[index];
-                      return NewsListItemCard(
-                        _item,
-                        onTap: controller.onTapNewsCard,
-                      );
-                    },
-                    separatorBuilder: (_, index) => const VSpacer(space: 8),
-                    itemCount: controller.articleList().length,
-                    shrinkWrap: true,
+                  () => Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 16),
+                          child: SingleSelectChipList(
+                            initialIndex: controller.selectedChipIndex(),
+                            chipString: controller.sourceList,
+                            extraOnToggle: controller.onTapChipNewsCategory,
+                          )),
+                      ListView.separated(
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemBuilder: (_, index) {
+                          final _item = controller.articleList[index];
+                          return NewsListItemCard(
+                            _item,
+                            onTap: controller.onTapNewsCard,
+                          );
+                        },
+                        separatorBuilder: (_, index) => const VSpacer(space: 8),
+                        itemCount: controller.articleList().length,
+                        shrinkWrap: true,
+                      ),
+                    ],
                   ),
                 ),
               ],
