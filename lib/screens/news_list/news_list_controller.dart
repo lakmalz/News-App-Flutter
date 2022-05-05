@@ -29,6 +29,8 @@ class NewsListController extends BaseController with PageHelper {
   @override
   void onInit() {
     searchKey.value = Get.arguments?[PARAMS_SEARCH_KEY];
+    _category = Get.arguments?[PARAMS_SELECTED_CATEGORY];
+    selectedChipIndex.value = sourceListWithFilter.indexOf(_category);
     dataListeners();
     super.onInit();
   }
