@@ -31,6 +31,12 @@ class Styles {
         color: color,
       );
 
+  static TextStyle? bold16pxTextStyle(Color color) => GoogleFonts.nunito(
+        fontSize: textSize16px,
+        fontWeight: FontWeight.bold,
+        color: color,
+      );
+
   static TextStyle? semibold12pxTextStyle(Color color) => GoogleFonts.nunito(
         fontSize: textSize12px,
         fontWeight: FontWeight.w500,

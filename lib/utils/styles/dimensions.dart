@@ -5,4 +5,5 @@ class Dimensions {
   static double screenWidth = Get.context!.width;
 
   static double detailTopImageHeight = screenHeight / 2.4;
+  static double loginBottomSpace = screenHeight / 4;
 }
