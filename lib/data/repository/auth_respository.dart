@@ -42,17 +42,22 @@ class AuthRepository {
     return email != null;
   }
 
-  Future<void> userRegistration(String email, String name, String password) async {
-    await userDao.insertPerson(User(
-        email: email, name: name, password: password));
+  Future<Either<Failure, User?>> userRegistration(
+      String email, String name, String password) async {
+    try {
+      await userDao
+          .insertPerson(User(email: email, name: name, password: password));
 
-    final user = await userDao.findUserByEmail(email);
-    Get.log(user?.email??'');
+      final user = await userDao.findUserByEmail(email);
+      Get.log(user?.email ?? '');
+      return  Right(user);
+    } catch (e) {
+      return Left(Failure.init(error: e, message: 'Email is already registered. Please try with another email'));
+    }
   }
 
   // Perform user logout
   Future<void> userLogout() async {
     await secureStorage.clearSecureStorage();
   }
-
 }
