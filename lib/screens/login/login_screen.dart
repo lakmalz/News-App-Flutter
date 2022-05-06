@@ -37,7 +37,7 @@ class LoginScreen extends GetView<LoginController> {
                 space: 24,
               ),
               GradientButton(
-                buttonText: 'Login',
+                buttonText: 'Sign in',
                 onPressed: () {},
               ),
               const VSpacer(

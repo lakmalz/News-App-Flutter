@@ -6,6 +6,7 @@ import 'package:news_app/routes/app_pages.dart';
 import 'package:news_app/services/initial_services.dart';
 
 main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   await initServices();
   runApp(const Application());
 }
