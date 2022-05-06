@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
-import 'package:news_app/screens/favourite_screen/favourite_controller.dart';
+import 'package:news_app/screens/login/login_controller.dart';
 import 'package:news_app/utils/global_widgets/gradient_button.dart';
 import 'package:news_app/utils/global_widgets/input_field.dart';
-import 'package:news_app/utils/global_widgets/rounded_border_button%20copy.dart';
 import 'package:news_app/utils/global_widgets/v_spacer.dart';
 import 'package:news_app/utils/styles/app_colors.dart';
 import 'package:news_app/utils/styles/dimensions.dart';
 import 'package:news_app/utils/styles/resources.dart';
 import 'package:news_app/utils/styles/styles.dart';
 
-class LoginScreen extends GetView<FavouriteController> {
+class LoginScreen extends GetView<LoginController> {
   const LoginScreen({Key? key}) : super(key: key);
 
   @override
@@ -23,10 +23,11 @@ class LoginScreen extends GetView<FavouriteController> {
             children: [
               const Spacer(),
               Text(
-                'LOGIN',
+                'Welcome\nBack',
                 style: Styles.bold32pxTextStyle(AppColors.primaryColor),
               ),
               const Spacer(),
+              
               InputField(hintText: Resources.hintTextUserName),
               const VSpacer(
                 space: 16,
@@ -43,12 +44,14 @@ class LoginScreen extends GetView<FavouriteController> {
                 space: 20,
               ),
               TextButton(
-                onPressed: () {},
+                onPressed: () => controller.onTapRegistration(),
                 child: Text('Registration',
                     style: Styles.bold16pxTextStyle(AppColors.blackColor)),
               ),
-              VSpacer(
-                space: Dimensions.loginBottomSpace,
+              Expanded(
+                child: VSpacer(
+                  space: Dimensions.loginBottomSpace,
+                ),
               )
             ],
           ),

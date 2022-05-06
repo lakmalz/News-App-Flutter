@@ -60,7 +60,7 @@ class NewsListController extends BaseController with PageHelper {
           searchKey.value, 'en', _sortBy.value, page, isInitialLoading);
     } else {
       await getNewsByCategory(
-          'us', searchKey.value, _category ?? '', page, isInitialLoading);
+          'us', searchKey.value, _category, page, isInitialLoading);
     }
   }
 

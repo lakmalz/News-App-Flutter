@@ -1,6 +1,7 @@
 class Resources {
   static String hintText = 'Dogecoin to the Moon';
-  static String hintTextUserName = 'User name';
+  static String hintTextName = 'Name';
+  static String hintTextUserName = 'Email';
   static String hintTextPassword = 'Password';
   static String labelSeeAll = 'See All';
   static String labelLatestNews = 'Latest News';
