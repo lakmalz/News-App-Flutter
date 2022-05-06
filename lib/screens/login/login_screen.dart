@@ -22,6 +22,11 @@ class LoginScreen extends GetView<FavouriteController> {
           child: Column(
             children: [
               const Spacer(),
+              Text(
+                'LOGIN',
+                style: Styles.bold32pxTextStyle(AppColors.primaryColor),
+              ),
+              const Spacer(),
               InputField(hintText: Resources.hintTextUserName),
               const VSpacer(
                 space: 16,
@@ -34,13 +39,14 @@ class LoginScreen extends GetView<FavouriteController> {
                 buttonText: 'Login',
                 onPressed: () {},
               ),
-
-               const VSpacer(
-                space: 24,
+              const VSpacer(
+                space: 20,
               ),
-              Text('Registration',
-                  textAlign: TextAlign.center,
-                  style: Styles.bold16pxTextStyle(AppColors.blackColor)),
+              TextButton(
+                onPressed: () {},
+                child: Text('Registration',
+                    style: Styles.bold16pxTextStyle(AppColors.blackColor)),
+              ),
               VSpacer(
                 space: Dimensions.loginBottomSpace,
               )

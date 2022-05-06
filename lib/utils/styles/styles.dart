@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:news_app/utils/styles/app_colors.dart';
 
 String newYorkDefault = 'New York';
+const textSize32px = 32.0;
 const textSize22px = 22.0;
 const textSize16px = 16.0;
 const textSize18px = 18.0;
@@ -33,6 +34,12 @@ class Styles {
 
   static TextStyle? bold16pxTextStyle(Color color) => GoogleFonts.nunito(
         fontSize: textSize16px,
+        fontWeight: FontWeight.bold,
+        color: color,
+      );
+
+  static TextStyle? bold32pxTextStyle(Color color) => GoogleFonts.nunito(
+        fontSize: textSize32px,
         fontWeight: FontWeight.bold,
         color: color,
       );
