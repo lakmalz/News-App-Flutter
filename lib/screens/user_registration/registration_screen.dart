@@ -22,39 +22,71 @@ class RegistrationScreen extends GetView<RegistrationController> {
       appBar: const GoBackAppbar(),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            const Spacer(),
-            Text(
-              'Create\nAccount',
-              style: Styles.bold32pxTextStyle(AppColors.primaryColor),
-            ),
-            const Spacer(),
-            InputField(hintText: Resources.hintTextName),
-            const VSpacer(
-              space: 16,
-            ),
-            InputField(hintText: Resources.hintTextUserName),
-            const VSpacer(
-              space: 16,
-            ),
-            InputField(hintText: Resources.hintTextPassword),
-            const VSpacer(
-              space: 24,
-            ),
-            GradientButton(
-              buttonText: 'Sign up',
-              onPressed: () {},
-            ),
-            const VSpacer(
-              space: 20,
-            ),
-            Expanded(
-              child: VSpacer(
-                space: Dimensions.loginBottomSpace,
+        child: Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              const Spacer(),
+              Text(
+                Resources.labelCreateAccount,
+                style: Styles.bold32pxTextStyle(AppColors.primaryColor),
               ),
-            )
-          ],
+              const Expanded(
+                child: VSpacer(
+                  space: 80,
+                ),
+              ),
+              Obx(
+                () => Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    InputField(
+                        errorMessage: controller.errName(),
+                        onChanged: (text) {
+                          controller.name.value = text;
+                        },
+                        hintText: Resources.hintTextName),
+                    const VSpacer(
+                      space: 16,
+                    ),
+                    InputField(
+                        errorMessage: controller.errEmail.value,
+                        onChanged: (text) {
+                          controller.email.value = text;
+                        },
+                        hintText: Resources.hintTextEmail),
+                    const VSpacer(
+                      space: 16,
+                    ),
+                    InputField(
+                        errorMessage: controller.errPassword(),
+                        onChanged: (text) {
+                          controller.password.value = text;
+                        },
+                        hintText: Resources.hintTextPassword),
+                  ],
+                ),
+              ),
+              const VSpacer(
+                space: 24,
+              ),
+              Obx(
+                () => GradientButton(
+                  isEnable: controller.isEnableButton(),
+                  buttonText: Resources.labelSignup,
+                  onPressed: () => controller.onTapSignup(),
+                ),
+              ),
+              const VSpacer(
+                space: 20,
+              ),
+              Expanded(
+                child: VSpacer(
+                  space: Dimensions.loginBottomSpace,
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );

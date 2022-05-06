@@ -68,10 +68,10 @@ class NewsListController extends BaseController with PageHelper {
   // and sortby few sort category
   Future searchByKeyLanguage(String searchKey, String language, String sortBy,
       int page, bool isInitialLoading) async {
-    _loadingProgress.show(isVisible: isInitialLoading);
+    loadingProgress.show(isVisible: isInitialLoading);
     final _response = await _newsRepository
         .searchByKeyLanguage(searchKey, language, sortBy, page: page);
-    await _loadingProgress.hide();
+    await loadingProgress.hide();
     _response.fold((l) {
       showError(l);
     }, (r) {
@@ -83,10 +83,10 @@ class NewsListController extends BaseController with PageHelper {
   // Get news by category and search key for user entered country
   Future getNewsByCategory(String country, String searchKey, String category,
       int page, bool isInitialLoading) async {
-    _loadingProgress.show(isVisible: isInitialLoading);
+    loadingProgress.show(isVisible: isInitialLoading);
     final _response = await _newsRepository.newsByCategory(
         country: country, category: category, searchKey: searchKey, page: page);
-    await _loadingProgress.hide();
+    await loadingProgress.hide();
     _response.fold((l) {
       showError(l);
     }, (r) {

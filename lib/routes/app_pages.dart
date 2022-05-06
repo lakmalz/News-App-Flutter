@@ -11,11 +11,11 @@ import 'package:news_app/screens/news_list/news_list_screen.dart';
 import 'package:news_app/screens/user_registration/registration_binding.dart';
 import 'package:news_app/screens/user_registration/registration_screen.dart';
 
-class AppPages{
+class AppPages {
   AppPages._();
 
-static const initialScreen = Routes.loginScreen;
-static final routes = [
+  static const initialScreen = Routes.loginScreen;
+  static final routes = [
     GetPage(
       name: Routes.loginScreen,
       page: () => const LoginScreen(),

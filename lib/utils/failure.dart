@@ -1,14 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:get/get.dart';
-const error = 'Error';
-const networkError = 'Network error';
-const somethingWentWrong = 'Something went wrong, Please try again.';
-const sendTimeout = 'Receive timeout in send request';
-const receiveTimeout = 'Receive timeout in connection';
-const internetConnectionError =
-    'Connection failed due to internet connection';
-const connectionTimeout = 'Connection timeout';
-const requestCancelError = 'Request was cancelled';
+import 'package:news_app/utils/styles/resources.dart';
+
 class Failure implements Exception {
   Failure();
 
@@ -35,40 +28,40 @@ class Failure implements Exception {
       this.message = message;
     } else {
       this.title = error;
-      this.message = somethingWentWrong;
+      this.message = Resources.somethingWentWrong;
     }
     Get.printError(info: error.toString());
   }
 
   _handleError(DioError error) {
-    title = networkError;
+    title = Resources.networkError;
     switch (error.type) {
       case DioErrorType.cancel:
-        message = requestCancelError;
+        message = Resources.requestCancelError;
         break;
       case DioErrorType.connectTimeout:
-        message = connectionTimeout;
+        message = Resources.connectionTimeout;
         break;
       case DioErrorType.other:
-        message = internetConnectionError;
+        message = Resources.internetConnectionError;
         break;
       case DioErrorType.receiveTimeout:
-        message = receiveTimeout;
+        message = Resources.receiveTimeout;
         break;
       case DioErrorType.response:
         if (error.response?.data != null) {
           try {
             message = error.response?.data['message'];
           } catch (e) {
-            message = somethingWentWrong;
+            message = Resources.somethingWentWrong;
           }
         }
         break;
       case DioErrorType.sendTimeout:
-        message = sendTimeout;
+        message = Resources.sendTimeout;
         break;
       default:
-        message = somethingWentWrong;
+        message = Resources.somethingWentWrong;
     }
     return message;
   }

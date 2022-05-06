@@ -22,6 +22,14 @@ class AppColors {
         begin: Alignment.topLeft,
         end: Alignment.bottomRight,
       );
+  static LinearGradient get buttonDisableLinearGradient => LinearGradient(
+        colors: [
+          blackColor.withOpacity(0.4),
+          Colors.black.withOpacity(0.4),
+        ],
+        begin: Alignment.topLeft,
+        end: Alignment.bottomRight,
+      );
 
   static LinearGradient get cardOverlayLinearGradient => LinearGradient(
         colors: [

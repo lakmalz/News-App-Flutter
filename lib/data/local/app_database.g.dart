@@ -82,7 +82,7 @@ class _$AppDatabase extends AppDatabase {
       },
       onCreate: (database, version) async {
         await database.execute(
-            'CREATE TABLE IF NOT EXISTS `User` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `email` TEXT, `name` TEXT, `password` TEXT)');
+            'CREATE TABLE IF NOT EXISTS `User` (`email` TEXT, `name` TEXT, `password` TEXT, PRIMARY KEY (`email`))');
 
         await callback?.onCreate?.call(database, version);
       },
@@ -103,7 +103,6 @@ class _$UserDao extends UserDao {
             database,
             'User',
             (User item) => <String, Object?>{
-                  'id': item.id,
                   'email': item.email,
                   'name': item.name,
                   'password': item.password
@@ -121,7 +120,6 @@ class _$UserDao extends UserDao {
   Future<User?> findUserByEmail(String email) async {
     return _queryAdapter.query('SELECT * FROM User WHERE email = ?1',
         mapper: (Map<String, Object?> row) => User(
-            id: row['id'] as int?,
             email: row['email'] as String?,
             name: row['name'] as String?,
             password: row['password'] as String?),

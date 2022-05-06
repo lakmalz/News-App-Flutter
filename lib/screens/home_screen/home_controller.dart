@@ -10,7 +10,6 @@ import 'package:news_app/utils/page_helper.dart';
 import 'package:news_app/utils/styles/resources.dart';
 
 class HomeController extends BaseController with PageHelper {
-  final LoadingProgressService _loadingProgress = Get.find();
   final NewsRepository _newsRepository = Get.find();
   List<String> sourceList = Resources.sourceList;
 
@@ -27,11 +26,11 @@ class HomeController extends BaseController with PageHelper {
 
   onSearch(String value) {
     if (value.isNotEmpty) {
-      openNewsList(value);
+      navigateToNewsList(value);
     }
   }
 
-  openNewsList(String searchKey) {
+  navigateToNewsList(String searchKey) {
     Get.toNamed(Routes.newsListScreen, arguments: {
       PARAMS_SEARCH_KEY: searchKey,
       PARAMS_SELECTED_CATEGORY: _category
@@ -53,7 +52,7 @@ class HomeController extends BaseController with PageHelper {
 
   // Initial home data loading
   loadData(bool initialLoading) async {
-    _loadingProgress.show(isVisible: initialLoading);
+    loadingProgress.show(isVisible: initialLoading);
 
     // Multiple requests sending at a time
     final responseList = await Future.wait([
@@ -61,7 +60,7 @@ class HomeController extends BaseController with PageHelper {
       getNewsByCategory(_category ?? '', page),
     ]);
 
-    _loadingProgress.hide();
+    loadingProgress.hide();
 
     // Received Breaking news list asign to  Rx value
     if (responseList[0] != null) {
@@ -78,10 +77,10 @@ class HomeController extends BaseController with PageHelper {
   }
 
   loadNewsByCategory(bool initialLoading) async {
-    _loadingProgress.show(isVisible: initialLoading);
+    loadingProgress.show(isVisible: initialLoading);
 
     final response = await getNewsByCategory(_category ?? '', page);
-    await _loadingProgress.hide();
+    await loadingProgress.hide();
     pageIncrement(response?.totalResults ?? 0);
 
     if (articleList.isEmpty) {

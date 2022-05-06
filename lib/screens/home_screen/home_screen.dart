@@ -106,7 +106,7 @@ class HomeScreen extends GetView<HomeController> {
               style: Styles.smallNewyork18pxTextStyle(AppColors.blackColor)),
           const Spacer(),
           InkWell(
-            onTap: () => controller.openNewsList(''),
+            onTap: () => controller.navigateToNewsList(''),
             child: Text(Resources.labelSeeAll,
                 style: Styles.semibold12pxTextStyle(AppColors.secondaryColor)),
           ),

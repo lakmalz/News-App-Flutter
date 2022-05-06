@@ -4,6 +4,7 @@ import 'package:news_app/data/remote/api_client.dart';
 import 'package:news_app/data/remote/response/news_list_response.dart';
 import 'package:news_app/utils/constant.dart';
 import 'package:news_app/utils/failure.dart';
+import 'package:news_app/utils/styles/resources.dart';
 
 class NewsRepository {
   final ApiClient _apiClient = Get.find();
@@ -19,7 +20,7 @@ class NewsRepository {
         return Right(response);
       } else {
         return Left(
-            Failure.init(title: error, message: response.message ?? ''));
+            Failure.init(title: Resources.error, message: response.message ?? ''));
       }
     } catch (e) {
       return Left(Failure.init(error: e));
@@ -39,7 +40,7 @@ class NewsRepository {
         return Right(response);
       } else {
         return Left(
-            Failure.init(title: error, message: response.message ?? ''));
+            Failure.init(title: Resources.error, message: response.message ?? ''));
       }
     } catch (e) {
       return Left(Failure.init(error: e));
