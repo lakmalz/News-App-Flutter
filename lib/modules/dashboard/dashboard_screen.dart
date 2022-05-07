@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:news_app/screens/dashboard/components/floating_bottom_navigation_bar.dart';
-import 'package:news_app/screens/dashboard/dashboard_controller.dart';
-import 'package:news_app/screens/favourite_screen/favourite_screen.dart';
-import 'package:news_app/screens/home_screen/home_screen.dart';
-import 'package:news_app/screens/profile_screen/profile_screen.dart';
+import 'package:news_app/modules/dashboard/components/floating_bottom_navigation_bar.dart';
+import 'package:news_app/modules/dashboard/dashboard_controller.dart';
+import 'package:news_app/modules/favourite_screen/favourite_screen.dart';
+import 'package:news_app/modules/home_screen/home_screen.dart';
+import 'package:news_app/modules/profile_screen/profile_screen.dart';
 import 'package:news_app/utils/enum.dart';
 import 'package:news_app/utils/extension.dart';
 

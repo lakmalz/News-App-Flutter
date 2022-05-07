@@ -28,8 +28,8 @@ class NewsListController extends BaseController with PageHelper {
 
   @override
   void onInit() {
-    searchKey.value = Get.arguments?[PARAMS_SEARCH_KEY];
-    _category = Get.arguments?[PARAMS_SELECTED_CATEGORY];
+    searchKey.value = Get.arguments?[paramsSearchKey];
+    _category = Get.arguments?[paramsSelectedCategory];
     selectedChipIndex.value = sourceListWithFilter.indexOf(_category);
     dataListeners();
     super.onInit();
@@ -97,7 +97,7 @@ class NewsListController extends BaseController with PageHelper {
 
   onTapNewsCard(ArticlesModel item) {
     Get.toNamed(Routes.newsDetailsScreen, arguments: {
-      PARAMS_SELECTED_ARTICLE: item,
+      paramsSelectedArticle: item,
     });
   }
 

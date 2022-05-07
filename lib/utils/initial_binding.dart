@@ -5,7 +5,7 @@ import 'package:news_app/data/preferences/secure_storage.dart';
 import 'package:news_app/data/remote/api_client.dart';
 import 'package:news_app/data/remote/network_manager.dart';
 import 'package:news_app/data/repository/auth_respository.dart';
-import 'package:news_app/screens/login/auth_controller.dart';
+import 'package:news_app/modules/login/auth_controller.dart';
 import 'package:news_app/utils/constant.dart';
 
 class InitialBinding extends Bindings {

@@ -8,13 +8,12 @@ class NewsDetailsController extends BaseController {
 
   @override
   void onInit() {
-    articleModel.value = Get.arguments?[PARAMS_SELECTED_ARTICLE];
+    articleModel.value = Get.arguments?[paramsSelectedArticle];
     super.onInit();
   }
 
   @override
   void onReady() {
-    
     super.onReady();
   }
 }

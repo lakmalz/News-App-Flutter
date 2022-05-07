@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:news_app/screens/home_screen/components/search_edit_field.dart';
-import 'package:news_app/screens/news_list/news_list_controller.dart';
+import 'package:news_app/modules/home_screen/components/search_edit_field.dart';
+import 'package:news_app/modules/news_list/news_list_controller.dart';
 import 'package:news_app/utils/global_widgets/data_empty.dart';
 import 'package:news_app/utils/global_widgets/news_list_item_card.dart';
 import 'package:news_app/utils/global_widgets/refresh_custom_footer.dart';

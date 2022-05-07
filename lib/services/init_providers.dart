@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:news_app/data/local/app_database.dart';
 import 'package:news_app/data/preferences/secure_storage.dart';
 import 'package:news_app/data/repository/auth_respository.dart';
-import 'package:news_app/screens/login/auth_controller.dart';
+import 'package:news_app/modules/login/auth_controller.dart';
 import 'package:news_app/services/loading_progress_service.dart';
 import 'package:news_app/utils/constant.dart';
 
@@ -19,7 +19,8 @@ Future initProviders() async {
 
   AuthRepository authRepo = Get.find();
   final isAthenticated = await authRepo.isUserLoggedIn();
-  Get.lazyPut(() => AuthController(isAthenticated));
+  final email = await authRepo.getLoggedUserEmail();
+  Get.lazyPut(() => AuthController(isAthenticated, email ?? ''));
 
   await Get.putAsync(() async => LoadingProgressService());
 }

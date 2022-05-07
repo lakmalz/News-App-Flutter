@@ -1,6 +1,10 @@
-const PARAMS_SEARCH_KEY = 'SEAR_KEY';
-const PARAMS_SELECTED_ARTICLE = 'SELECTED_ARTICLE';
-const PARAMS_SELECTED_CATEGORY = 'SELECTED_CATEGORY';
-const pageSize = 20;
+// Argivemnt parameters name
+const paramsSearchKey = 'SEAR_KEY';
+const paramsSelectedArticle = 'SELECTED_ARTICLE';
+const paramsSelectedCategory = 'SELECTED_CATEGORY';
+
+// Other
 const String dbName = 'news_app_database.db';
 const String prefKeyEmail = 'email';
+const String statusOK = 'ok';
+const pageSize = 20;

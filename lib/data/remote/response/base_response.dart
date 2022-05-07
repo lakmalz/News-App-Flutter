@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:news_app/utils/constant.dart';
 
 part 'base_response.g.dart';
 
@@ -10,7 +11,7 @@ class BaseResponse {
   String? message;
   int? totalResults;
 
-  bool isSuccess() => status == 'ok';
+  bool isSuccess() => status == statusOK;
 
   factory BaseResponse.fromJson(Map<String, dynamic> json) =>
       _$BaseResponseFromJson(json);

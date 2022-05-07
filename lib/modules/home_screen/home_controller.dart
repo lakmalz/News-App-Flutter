@@ -3,7 +3,6 @@ import 'package:news_app/data/models/articles_model.dart';
 import 'package:news_app/data/remote/response/news_list_response.dart';
 import 'package:news_app/data/repository/news_repository.dart';
 import 'package:news_app/routes/app_routes.dart';
-import 'package:news_app/services/loading_progress_service.dart';
 import 'package:news_app/utils/base_controller.dart';
 import 'package:news_app/utils/constant.dart';
 import 'package:news_app/utils/page_helper.dart';
@@ -32,14 +31,14 @@ class HomeController extends BaseController with PageHelper {
 
   navigateToNewsList(String searchKey) {
     Get.toNamed(Routes.newsListScreen, arguments: {
-      PARAMS_SEARCH_KEY: searchKey,
-      PARAMS_SELECTED_CATEGORY: _category
+      paramsSearchKey: searchKey,
+      paramsSelectedCategory: _category
     });
   }
 
   onTapNewsCard(ArticlesModel item) {
     Get.toNamed(Routes.newsDetailsScreen, arguments: {
-      PARAMS_SELECTED_ARTICLE: item,
+      paramsSelectedArticle: item,
     });
   }
 
@@ -50,7 +49,7 @@ class HomeController extends BaseController with PageHelper {
     loadNewsByCategory(true);
   }
 
-  // Initial home data loading
+  // Initial home data get from cloud API
   loadData(bool initialLoading) async {
     loadingProgress.show(isVisible: initialLoading);
 

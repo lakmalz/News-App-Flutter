@@ -4,10 +4,11 @@ import 'package:news_app/routes/app_routes.dart';
 import 'package:news_app/utils/base_controller.dart';
 
 class AuthController extends BaseController {
-  AuthController(this.isAuthenticated);
+  AuthController(this.isAuthenticated, this.userEmail);
   AuthRepository authRepository = Get.find();
 
   bool isAuthenticated = false;
+  String userEmail;
   
   // Perform user logout
   userLogout()async{
@@ -16,6 +17,7 @@ class AuthController extends BaseController {
     await authRepository.userLogout();
     Get.offAllNamed(Routes.loginScreen);
     loadingProgress.hide();
-
   }
+
+
 }

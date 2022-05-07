@@ -36,10 +36,14 @@ class AuthRepository {
     await secureStorage.secureWrite(prefKeyEmail, email);
   }
 
-  // Check the user alreadt loggedin
+  // Check the user already loggedin
   isUserLoggedIn() async {
     final email = await secureStorage.secureRead(prefKeyEmail);
     return email != null;
+  }
+
+  Future<String?> getLoggedUserEmail() async {
+   return await secureStorage.secureRead(prefKeyEmail);
   }
 
   Future<Either<Failure, User?>> userRegistration(

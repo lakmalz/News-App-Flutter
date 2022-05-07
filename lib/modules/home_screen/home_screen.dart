@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:news_app/screens/home_screen/components/search_edit_field.dart';
-import 'package:news_app/screens/home_screen/components/top_heading_slider.dart';
-import 'package:news_app/screens/home_screen/home_controller.dart';
+import 'package:news_app/modules/home_screen/components/search_edit_field.dart';
+import 'package:news_app/modules/home_screen/components/top_heading_slider.dart';
+import 'package:news_app/modules/home_screen/home_controller.dart';
 import 'package:news_app/utils/global_widgets/h_spacer.dart';
 import 'package:news_app/utils/global_widgets/news_list_item_card.dart';
 import 'package:news_app/utils/global_widgets/refresh_custom_footer.dart';

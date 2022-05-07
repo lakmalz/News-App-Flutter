@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
-import 'package:news_app/screens/login/login_controller.dart';
+import 'package:news_app/modules/login/login_controller.dart';
 import 'package:news_app/utils/global_widgets/border_button.dart';
 import 'package:news_app/utils/global_widgets/gradient_button.dart';
 import 'package:news_app/utils/global_widgets/input_field.dart';
