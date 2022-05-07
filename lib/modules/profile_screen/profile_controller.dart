@@ -11,6 +11,4 @@ class ProfileController extends BaseController{
       authController.userLogout();
     });
   }
-
-
 }

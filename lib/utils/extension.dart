@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:news_app/utils/enum.dart';
 
 extension BottomNavigation on eBottomNavigation {
@@ -10,5 +11,16 @@ extension BottomNavigation on eBottomNavigation {
       case eBottomNavigation.profile:
         return 2;
     }
+  }
+}
+
+extension ContextHelper on BuildContext{
+  showModal(Widget modal) {
+    showModalBottomSheet(
+      context: this,
+      backgroundColor: Colors.transparent,
+      builder: (ctx) => SafeArea(child: modal),
+      isScrollControlled: true,
+    );
   }
 }

@@ -22,6 +22,7 @@ class HomeScreen extends GetView<HomeController> {
     return Column(
       children: [
         Padding(
+          //TODO use default padding
           padding: const EdgeInsets.only(right: 16),
           child: Row(
             children: [
@@ -108,7 +109,8 @@ class HomeScreen extends GetView<HomeController> {
           InkWell(
             onTap: () => controller.navigateToNewsList(''),
             child: Text(Resources.labelSeeAll,
-                style: Styles.semibold12pxTextStyle(AppColors.secondaryColor)),
+                style: Styles.semibold12pxTextStyle(
+                    color: AppColors.secondaryColor)),
           ),
           const HSpacer(space: 8),
           Image.asset(Resources.icRightArrow)

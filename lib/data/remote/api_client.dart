@@ -12,7 +12,6 @@ abstract class ApiClient {
   Future<NewsListResponse> searchByKeyLanguage(
     @Query('q') String searchKey,
     @Query('language')String language,
-    @Query('sortBy')String sortBy,
     @Query('page') int page,
     @Query('pageSize') int pageSize,
   );
@@ -21,9 +20,9 @@ abstract class ApiClient {
   Future<NewsListResponse> topHeadline(
     @Query('country') String country,
     @Query('category') String category,
+    @Query('language')String language,
     @Query('q') String key,
     @Query('page') int page,
     @Query('pageSize') int pageSize,
-
   );
 }

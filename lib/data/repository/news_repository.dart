@@ -10,11 +10,11 @@ class NewsRepository {
   final ApiClient _apiClient = Get.find();
 
   Future<Either<Failure, NewsListResponse>> searchByKeyLanguage(
-      String searchKey, String langauge, String sortBy,
+      String searchKey, String langauge,
       {required int page}) async {
     try {
       final response = await _apiClient.searchByKeyLanguage(
-          searchKey, langauge, sortBy, page, pageSize);
+          searchKey, langauge, page, pageSize);
 
       if (response.isSuccess()) {
         return Right(response);
@@ -30,11 +30,12 @@ class NewsRepository {
   Future<Either<Failure, NewsListResponse>> newsByCategory(
       {required String country,
       String category = '',
+      String language = 'en',
       String searchKey = '',
       int page = 1}) async {
     try {
       final response = await _apiClient.topHeadline(
-          country, category, searchKey, page, pageSize);
+          country, category, language, searchKey, page, pageSize);
 
       if (response.isSuccess()) {
         return Right(response);

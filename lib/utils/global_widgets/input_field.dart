@@ -23,11 +23,11 @@ class InputField extends StatelessWidget {
       inputFormatters: inputFormatters,
       maxLines: 1,
       textAlign: TextAlign.left,
-      style: Styles.semibold12pxTextStyle(AppColors.focusedTextColor),
+      style: Styles.semibold12pxTextStyle(color: AppColors.focusedTextColor),
       decoration: InputDecoration(
         contentPadding: const EdgeInsets.symmetric(horizontal: 16),
         hintText: hintText,
-        hintStyle: Styles.semibold12pxTextStyle(AppColors.greyHintTextColor),
+        hintStyle: Styles.semibold12pxTextStyle(color: AppColors.greyHintTextColor),
         focusedBorder: foucuedBorder(context),
         enabledBorder: enabledBorder(context),
         errorBorder: enabledBorder(context),

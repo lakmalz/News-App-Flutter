@@ -61,7 +61,7 @@ class NewsListItemCard extends StatelessWidget {
             child: Text(content ?? '',
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
-                style: Styles.semibold12pxTextStyle(AppColors.whiteColor)),
+                style: Styles.semibold12pxTextStyle(color: AppColors.whiteColor)),
           ),
           const HSpacer(space: 24),
           CreatedDateText(

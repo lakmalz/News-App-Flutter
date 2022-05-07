@@ -15,12 +15,11 @@ class _ApiClient implements ApiClient {
 
   @override
   Future<NewsListResponse> searchByKeyLanguage(
-      searchKey, language, sortBy, page, pageSize) async {
+      searchKey, language, page, pageSize) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
       r'q': searchKey,
       r'language': language,
-      r'sortBy': sortBy,
       r'page': page,
       r'pageSize': pageSize
     };
@@ -38,11 +37,12 @@ class _ApiClient implements ApiClient {
 
   @override
   Future<NewsListResponse> topHeadline(
-      country, category, key, page, pageSize) async {
+      country, category, language, key, page, pageSize) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
       r'country': country,
       r'category': category,
+      r'language': language,
       r'q': key,
       r'page': page,
       r'pageSize': pageSize

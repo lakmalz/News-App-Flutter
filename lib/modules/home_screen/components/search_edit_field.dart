@@ -36,14 +36,14 @@ class SearchEditField extends StatelessWidget {
           onChanged: onChanged,
           maxLines: 1,
           textAlign: TextAlign.left,
-          style: Styles.semibold12pxTextStyle(AppColors.focusedTextColor),
+          style: Styles.semibold12pxTextStyle(color:AppColors.focusedTextColor),
           decoration: InputDecoration(
             contentPadding: const EdgeInsets.symmetric(horizontal: 16),
             suffixIcon: InkWell(
                 onTap: onTapSuffixIcon,
                 child: Image.asset(isEnable ? Resources.icSearch : Resources.icCancel)),
             hintText: Resources.hintText,
-            hintStyle: Styles.semibold12pxTextStyle(AppColors.greyHintTextColor),
+            hintStyle: Styles.semibold12pxTextStyle(color:AppColors.greyHintTextColor),
             focusedBorder: foucuedBorder(context),
             enabledBorder: enabledBorder(context),
             border: enabledBorder(context),

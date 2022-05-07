@@ -36,7 +36,8 @@ class NewsListScreen extends GetView<NewsListController> {
                 () => SingleSelectChipList(
                   initialIndex: controller.selectedChipIndex(),
                   chipString: controller.sourceListWithFilter,
-                  extraOnToggle: controller.onTapChipNewsCategory,
+                  extraOnToggle: (index) =>
+                      controller.onTapChipNewsCategory(index, context),
                 ),
               ),
               Obx(() => Container(
@@ -44,16 +45,14 @@ class NewsListScreen extends GetView<NewsListController> {
                     alignment: Alignment.topLeft,
                     child: RichText(
                       text: TextSpan(
-                        style:
-                            Styles.semibold14pxTextStyle(AppColors.blackColor),
+                        style: Styles.semibold14pxTextStyle(),
                         children: [
                           TextSpan(
                               text:
                                   'About ${controller.searchResultCount()} result for '),
                           TextSpan(
                               text: controller.searchKey(),
-                              style: Styles.bold14pxTextStyle(
-                                  AppColors.blackColor)),
+                              style: Styles.bold14pxTextStyle()),
                         ],
                       ),
                     ),

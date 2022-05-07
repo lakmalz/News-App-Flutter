@@ -13,7 +13,7 @@ class SingleSelectChipList extends StatelessWidget {
     //TODO
     return ChipList(
                   listOfChipNames: chipString,
-                  activeBgColorList: [AppColors.gradeintEndPrimary],
+                  activeBgColorList: [AppColors.primaryColor.withOpacity(0.8)],
                   inactiveBgColorList: [AppColors.whiteColor],
                   activeTextColorList: [AppColors.whiteColor],
                   inactiveTextColorList: [AppColors.brownColor],

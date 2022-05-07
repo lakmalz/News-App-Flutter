@@ -12,21 +12,21 @@ const textSize12px = 12.0;
 const textSize10px = 10.0;
 
 class Styles {
-
   //Font style Nunito
-  static TextStyle? xxtinySizeLightText(Color color) => GoogleFonts.nunito(
+  static TextStyle? semiBold22pxTextStyle({Color color = Colors.black}) =>
+      GoogleFonts.nunito(
         fontSize: textSize22px,
-        fontWeight: FontWeight.w300,
+        fontWeight: FontWeight.w500,
         color: color,
       );
 
-  static TextStyle? semibold14pxTextStyle(Color color) => GoogleFonts.nunito(
+  static TextStyle? semibold14pxTextStyle({Color color = Colors.black}) => GoogleFonts.nunito(
         fontSize: textSize14px,
         fontWeight: FontWeight.w500,
         color: color,
       );
 
-  static TextStyle? bold14pxTextStyle(Color color) => GoogleFonts.nunito(
+  static TextStyle? bold14pxTextStyle({Color color = Colors.black}) => GoogleFonts.nunito(
         fontSize: textSize14px,
         fontWeight: FontWeight.bold,
         color: color,
@@ -44,7 +44,7 @@ class Styles {
         color: color,
       );
 
-  static TextStyle? semibold12pxTextStyle(Color color) => GoogleFonts.nunito(
+  static TextStyle? semibold12pxTextStyle({Color color = Colors.black}) => GoogleFonts.nunito(
         fontSize: textSize12px,
         fontWeight: FontWeight.w500,
         color: color,

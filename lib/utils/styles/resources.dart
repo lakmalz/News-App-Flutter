@@ -1,12 +1,4 @@
 class Resources {
-  static String hintText = 'Dogecoin to the Moon';
-  static String hintTextName = 'Name';
-  static String hintTextEmail = 'Email';
-  static String hintTextPassword = 'Password';
-  static String labelSeeAll = 'See All';
-  static String labelLatestNews = 'Latest News';
-  static String labelFilter = 'Filter';
-
   // News Categories
   static List<String> sourceList = [
     'Business',
@@ -18,6 +10,20 @@ class Resources {
     'Sports'
   ];
 
+  static Map<String, String> languageList = {
+    'en': 'English',
+    'fr': 'French',
+    'zh': 'Chinese',
+  };
+
+  static Map<String, String> countryList = {
+    'us': 'United States',
+    'gb': 'United Kingdom',
+    'ru': 'Russia',
+    'in': 'India',
+    'id': 'Indonesia'
+  };
+
   //Icons path
   static String parentPath = 'assets/images/';
   static String icSearch = parentPath + 'ic_search.png';
@@ -28,8 +34,16 @@ class Resources {
   static String icProfile = parentPath + 'ic_profile.png';
   static String icRightArrow = parentPath + 'ic_right_arrow.png';
   static String icBack = parentPath + 'ic_back.png';
+  static String icDelete = parentPath + 'ic_delete.png';
 
   //Strings
+  static String hintText = 'Dogecoin to the Moon';
+  static String hintTextName = 'Name';
+  static String hintTextEmail = 'Email';
+  static String hintTextPassword = 'Password';
+  static String labelSeeAll = 'See All';
+  static String labelLatestNews = 'Latest News';
+  static String labelFilter = 'Filter';
   static String errMsgIncorrectUserNameOrPassword =
       'Incorrect username or password';
   static String error = 'Error';
@@ -50,5 +64,10 @@ class Resources {
   static String labelLogout = 'Logout';
   static String labelOk = 'Ok';
   static String labelConfirm = 'Confirm';
-  static String confirmAlertToLogout = 'Are you sure you want to log out? Confirm and log out.';
+  static String confirmAlertToLogout =
+      'Are you sure you want to log out? Confirm and log out.';
+  static String labelReset = 'Reset';
+  static String labelCountry = 'Country';
+  static String labelLanguage = 'Language';
+  static String lableSave = 'Save';
 }

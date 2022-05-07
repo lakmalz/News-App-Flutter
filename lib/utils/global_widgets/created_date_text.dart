@@ -12,7 +12,7 @@ class CreatedDateText extends StatelessWidget {
     return Text(
       formatedDate(createdDate),
       textAlign: TextAlign.right,
-      style: Styles.semibold12pxTextStyle(color),
+      style: Styles.semibold12pxTextStyle(),
     );
   }
 
