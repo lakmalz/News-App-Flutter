@@ -70,7 +70,7 @@ class TopHeadingSlider extends StatelessWidget {
       content,
       maxLines: 2,
       overflow: TextOverflow.ellipsis,
-      style: Styles.regular10pxTextStyle(AppColors.whiteColor),
+      style: Styles.regular10pxTextStyle(color: AppColors.whiteColor),
     );
   }
 

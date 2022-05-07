@@ -118,6 +118,7 @@ class FilterBottomSheet extends StatelessWidget {
         side: BorderSide(width: 1, color: AppColors.blackColor),
       ),
       onPressed: () {},
+      
       icon: Image.asset(Resources.icDelete),
       label: Text(
         Resources.labelReset,

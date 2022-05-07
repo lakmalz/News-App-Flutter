@@ -39,8 +39,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     index: controller.selectedIndex(),
                     children: _stack,
                   ),
-                  Positioned(
-                    bottom: 16,
+                  AnimatedPositioned(
+                    duration: const Duration(milliseconds: 400),
+                    bottom: controller.isVisibleBottomBar.value ? 16 : -70,
                     right: 0,
                     left: 0,
                     child: Row(
@@ -63,7 +64,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
   updateTabContainers(int _index) {
     if (_index == eBottomNavigation.home.tabIndex) {
       if (_stack[_index] is SizedBox) {
-        _stack[_index] = const HomeScreen();
+        _stack[_index] = HomeScreen();
       }
     }
     if (_index == eBottomNavigation.favourite.tabIndex) {
@@ -78,4 +79,3 @@ class _DashboardScreenState extends State<DashboardScreen> {
     }
   }
 }
-

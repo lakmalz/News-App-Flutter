@@ -1,7 +1,10 @@
+import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
 import 'package:news_app/data/models/articles_model.dart';
 import 'package:news_app/data/remote/response/news_list_response.dart';
 import 'package:news_app/data/repository/news_repository.dart';
+import 'package:news_app/modules/dashboard/dashboard_controller.dart';
 import 'package:news_app/routes/app_routes.dart';
 import 'package:news_app/utils/base_controller.dart';
 import 'package:news_app/utils/constant.dart';
@@ -9,6 +12,8 @@ import 'package:news_app/utils/page_helper.dart';
 import 'package:news_app/utils/styles/resources.dart';
 
 class HomeController extends BaseController with PageHelper {
+  final DashboardController _dashboardController = Get.find();
+  late ScrollController scrollController;
   final NewsRepository _newsRepository = Get.find();
   List<String> sourceList = Resources.sourceList;
 
@@ -16,6 +21,12 @@ class HomeController extends BaseController with PageHelper {
   RxList<ArticlesModel> breakingNewsList = RxList();
   RxList<ArticlesModel> articleList = RxList();
   String? _category = Resources.sourceList[0];
+
+  @override
+  void onInit() {
+    scrollController = ScrollController()..addListener(_scrollListener);
+    super.onInit();
+  }
 
   @override
   void onReady() {
@@ -121,5 +132,11 @@ class HomeController extends BaseController with PageHelper {
   resetPage() {
     page = 1;
     articleList.value = [];
+  }
+
+  void _scrollListener() {
+    scrollController.position.userScrollDirection == ScrollDirection.reverse
+        ? _dashboardController.visibleBottomBar(false)
+        : _dashboardController.visibleBottomBar(true);
   }
 }

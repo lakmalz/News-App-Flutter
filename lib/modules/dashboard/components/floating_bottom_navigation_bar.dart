@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 
 import 'package:news_app/utils/enum.dart';
 import 'package:news_app/utils/extension.dart';
+import 'package:news_app/utils/global_widgets/v_spacer.dart';
 import 'package:news_app/utils/styles/app_colors.dart';
 import 'package:news_app/utils/styles/resources.dart';
+import 'package:news_app/utils/styles/styles.dart';
 
 class FloatingBottomNavigationBar extends StatelessWidget {
   const FloatingBottomNavigationBar({
@@ -31,23 +33,17 @@ class FloatingBottomNavigationBar extends StatelessWidget {
           children: [
             _buildTabIcon(
               icon: Resources.icHome,
-              iconColor: selectedIndex == eBottomNavigation.home.tabIndex
-                  ? AppColors.primaryColor
-                  : AppColors.greyColor,
+              isSelected: selectedIndex == eBottomNavigation.home.tabIndex,
               onPressed: () => onTap(eBottomNavigation.home.tabIndex),
             ),
             _buildTabIcon(
               icon: Resources.icFavourite,
-              iconColor: selectedIndex == eBottomNavigation.favourite.tabIndex
-                  ? AppColors.primaryColor
-                  : AppColors.greyColor,
+              isSelected: selectedIndex == eBottomNavigation.favourite.tabIndex,
               onPressed: () => onTap(eBottomNavigation.favourite.tabIndex),
             ),
             _buildTabIcon(
               icon: Resources.icProfile,
-              iconColor: selectedIndex == eBottomNavigation.profile.tabIndex
-                  ? AppColors.primaryColor
-                  : AppColors.greyColor,
+              isSelected: selectedIndex == eBottomNavigation.profile.tabIndex,
               onPressed: () => onTap(eBottomNavigation.profile.tabIndex),
             ),
           ],
@@ -58,20 +54,30 @@ class FloatingBottomNavigationBar extends StatelessWidget {
 
   Widget _buildTabIcon({
     required String icon,
-    required Color iconColor,
+    required bool isSelected,
     required VoidCallback onPressed,
   }) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-      child: IconButton(
-          splashColor: Colors.transparent,
-          highlightColor: Colors.transparent,
-          onPressed: onPressed,
-          color: iconColor,
-          icon: Image.asset(
-            icon,
-            color: iconColor,
-          )),
+      padding: const EdgeInsets.fromLTRB(34, 12, 24, 8),
+      child: InkWell(
+        onTap: onPressed,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset(
+              icon,
+              color: isSelected ? AppColors.primaryColor : AppColors.greyColor,
+            ),
+            const VSpacer(space: 1),
+            Text(
+              'Home',
+              style: Styles.regular10pxTextStyle(
+                  color:
+                      isSelected ? AppColors.brownColor : AppColors.greyColor),
+            ),
+          ],
+        ),
+      ),
     );
   }
 

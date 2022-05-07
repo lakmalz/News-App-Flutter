@@ -70,4 +70,5 @@ class Resources {
   static String labelCountry = 'Country';
   static String labelLanguage = 'Language';
   static String lableSave = 'Save';
+  static String defaultLanguage = 'en';
 }

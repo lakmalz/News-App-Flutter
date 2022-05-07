@@ -50,7 +50,7 @@ class Styles {
         color: color,
       );
 
-  static TextStyle? regular10pxTextStyle(Color color) => GoogleFonts.nunito(
+  static TextStyle? regular10pxTextStyle({Color color = Colors.black}) => GoogleFonts.nunito(
         fontSize: textSize10px,
         fontWeight: FontWeight.normal,
         color: color,

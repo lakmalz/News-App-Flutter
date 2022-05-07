@@ -27,16 +27,18 @@ class NewsListController extends BaseController with PageHelper {
   Rxn<NewsListResponse> newsListResponse = Rxn();
   RxInt selectedChipIndex = 0.obs;
   RxString searchKey = ''.obs;
-  String? _selectedCountry  ;
-  String? _selectedLanguage  ;
+  String? _selectedCountry;
+  String? _selectedLanguage;
   RxString searchResultCount = '0'.obs;
-  String _category = Resources.labelFilter;
+  RxString searchByString = ''.obs;
+  RxString selectedCategory = Resources.labelFilter.obs;
 
   @override
   Future<void> onInit() async {
     searchKey.value = Get.arguments?[paramsSearchKey];
-    _category = Get.arguments?[paramsSelectedCategory];
-    selectedChipIndex.value = sourceListWithFilter.indexOf(_category);
+    selectedCategory.value = Get.arguments?[paramsSelectedCategory];
+    selectedChipIndex.value =
+        sourceListWithFilter.indexOf(selectedCategory.value);
     _selectedCountry = await _userPrefRepository.readFilterCountry();
     _selectedLanguage = await _userPrefRepository.readFilterLanguage();
     dataListeners();
@@ -45,7 +47,7 @@ class NewsListController extends BaseController with PageHelper {
 
   @override
   void onReady() {
-    getData(true);
+    initialDataLoad();
     super.onReady();
   }
 
@@ -63,19 +65,18 @@ class NewsListController extends BaseController with PageHelper {
   }
 
   Future getData(bool isInitialLoading) async {
-    if (_category == Resources.labelFilter) {
-      await searchByKeyLanguage(
-          searchKey.value, 'en',  page, isInitialLoading);
+    if (isFilterCategory()) {
+      await searchByKeyLanguage(searchKey.value, _selectedLanguage?? Resources.defaultLanguage, page, isInitialLoading);
     } else {
-      await getNewsByCategory(
-          'us', 'en', searchKey.value, _category, page, isInitialLoading);
+      await getNewsByCategory(_selectedCountry ?? '', _selectedLanguage ?? '',
+          searchKey.value, selectedCategory.value, page, isInitialLoading);
     }
   }
 
   // Search news by passing search key word, language
   // and sortby few sort category
-  Future searchByKeyLanguage(String searchKey, String language,
-      int page, bool isInitialLoading) async {
+  Future searchByKeyLanguage(String searchKey, String language, int page,
+      bool isInitialLoading) async {
     loadingProgress.show(isVisible: isInitialLoading);
     final _response = await _newsRepository
         .searchByKeyLanguage(searchKey, language, page: page);
@@ -89,20 +90,26 @@ class NewsListController extends BaseController with PageHelper {
   }
 
   // Get news by category and search key for user entered country
-  Future getNewsByCategory(String country, String language, String searchKey,
-      String category, int page, bool isInitialLoading) async {
+  Future getNewsByCategory(
+      String country,
+      String language,
+      String searchKeyWord,
+      String catgory,
+      int page,
+      bool isInitialLoading) async {
     loadingProgress.show(isVisible: isInitialLoading);
     final _response = await _newsRepository.newsByCategory(
         country: country,
-        category: category,
+        category: catgory,
         language: language,
-        searchKey: searchKey,
+        searchKey: searchKeyWord,
         page: page);
     await loadingProgress.hide();
     _response.fold((l) {
       showError(l);
     }, (r) {
       pageIncrement(r.totalResults ?? 0);
+      searchByString.value = [searchKeyWord, catgory].join(', ');
       newsListResponse.value = r;
     });
   }
@@ -114,12 +121,14 @@ class NewsListController extends BaseController with PageHelper {
   }
 
   onTapChipNewsCategory(int index, BuildContext context) {
-    // resetPage();
-    // selectedChipIndex(index);
-    // _category = sourceListWithFilter[index];
-    // getData(true);
-
-    openFilterBottomSheet(context);
+    selectedCategory.value = sourceListWithFilter[index];
+    selectedChipIndex(index);
+    if (isFilterCategory()) {
+      resetPage();
+      openFilterBottomSheet(context);
+    } else {
+      initialDataLoad();
+    }
   }
 
   isNewsAvailable() => articleList.isNotEmpty;
@@ -142,6 +151,18 @@ class NewsListController extends BaseController with PageHelper {
     articleList.value = [];
   }
 
+  initialDataLoad() {
+    resetPage();
+    getData(true);
+  }
+
+  onSubmitSearchTextField(String value) {
+    searchKey.value = value;
+    initialDataLoad();
+  }
+
+  isFilterCategory() => selectedCategory.value == Resources.labelFilter;
+
   void openFilterBottomSheet(BuildContext context) {
     context.showModal(FilterBottomSheet(
       selectedCountryKey: _selectedCountry,
@@ -151,7 +172,7 @@ class NewsListController extends BaseController with PageHelper {
         _selectedLanguage = languageKey;
         _userPrefRepository.saveFilterCountry(countryKey ?? '');
         _userPrefRepository.saveFilterLanguage(languageKey ?? '');
-        await onRefresh();
+        initialDataLoad();
       },
     ));
   }

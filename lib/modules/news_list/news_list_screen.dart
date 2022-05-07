@@ -27,6 +27,7 @@ class NewsListScreen extends GetView<NewsListController> {
                 () => SearchEditField(
                   initialText: controller.searchKey.value,
                   isEnable: false,
+                  onSubmitted: (value) => controller.onSubmitSearchTextField(value),
                   onTapSuffixIcon: () {
                     Get.back();
                   },
@@ -51,7 +52,7 @@ class NewsListScreen extends GetView<NewsListController> {
                               text:
                                   'About ${controller.searchResultCount()} result for '),
                           TextSpan(
-                              text: controller.searchKey(),
+                              text: controller.searchByString(),
                               style: Styles.bold14pxTextStyle()),
                         ],
                       ),

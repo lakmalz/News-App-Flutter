@@ -15,7 +15,7 @@ import 'package:news_app/utils/styles/styles.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 class HomeScreen extends GetView<HomeController> {
-  const HomeScreen({Key? key}) : super(key: key);
+  HomeScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -48,6 +48,7 @@ class HomeScreen extends GetView<HomeController> {
             onLoading: controller.onLoading,
             onRefresh: controller.onRefresh,
             child: ListView(
+              controller: controller.scrollController,
               children: [
                 Obx(
                   () => controller.breakingNewsList().isNotEmpty

@@ -23,4 +23,8 @@ extension ContextHelper on BuildContext{
       isScrollControlled: true,
     );
   }
+
+  dimissKeyBoard(){
+    FocusScopeNode currentFocus = FocusScope.of(this);
+  }
 }

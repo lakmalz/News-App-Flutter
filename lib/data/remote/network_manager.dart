@@ -5,10 +5,10 @@ import 'package:get/get.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 const defaultTimeout = Duration.millisecondsPerMinute;
-// const apiKey =
-//     '9284c0a465834e018c24e134ac255a72'; //TODO key should use by separate
 const apiKey =
-    'f0383482278d4b14a0d981d345ce9661'; //TODO key should use by separate
+    '9284c0a465834e018c24e134ac255a72'; //TODO key should use by separate
+// const apiKey =
+//     'f0383482278d4b14a0d981d345ce9661'; //TODO key should use by separate
 
 class NetworkManager {
   factory NetworkManager({required String baseUrl}) {
