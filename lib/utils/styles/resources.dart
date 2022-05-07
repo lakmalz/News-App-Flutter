@@ -48,4 +48,7 @@ class Resources {
   static String labelSignin = 'Sign in';
   static String labelCreateAccount = 'Create\nAccount';
   static String labelLogout = 'Logout';
+  static String labelOk = 'Ok';
+  static String labelConfirm = 'Confirm';
+  static String confirmAlertToLogout = 'Are you sure you want to log out? Confirm and log out.';
 }

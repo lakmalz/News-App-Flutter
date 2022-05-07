@@ -23,7 +23,7 @@ class ProfileScreen extends GetView<ProfileController> {
           child: BorderButton(
             borderColor: AppColors.blackColor,
             buttonText: Resources.labelLogout,
-            onPressed: () => controller.authController.userLogout(),
+            onPressed: () => controller.onTapLogout(),
           ),
         ),
         const Spacer()

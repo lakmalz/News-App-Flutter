@@ -15,6 +15,7 @@ class AuthController extends BaseController {
     loadingProgress.show();
     await Future.delayed(const Duration(seconds: 2));
     await authRepository.userLogout();
+    isAuthenticated = false;
     Get.offAllNamed(Routes.loginScreen);
     loadingProgress.hide();
   }
