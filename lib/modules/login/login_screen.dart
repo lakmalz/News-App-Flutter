@@ -6,6 +6,7 @@ import 'package:news_app/utils/global_widgets/app_scafold.dart';
 import 'package:news_app/utils/global_widgets/border_button.dart';
 import 'package:news_app/utils/global_widgets/gradient_button.dart';
 import 'package:news_app/utils/global_widgets/input_field.dart';
+import 'package:news_app/utils/global_widgets/signin_header.dart';
 import 'package:news_app/utils/global_widgets/v_spacer.dart';
 import 'package:news_app/utils/styles/app_colors.dart';
 import 'package:news_app/utils/styles/dimensions.dart';
@@ -19,12 +20,13 @@ class LoginScreen extends GetView<LoginController> {
   Widget build(BuildContext context) {
     return AppScaffold(
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           const Spacer(),
-          Text(
-            Resources.labelWelcome,
-            style: Styles.bold32pxTextStyle(AppColors.primaryColor),
-          ),
+          SigninHeader(
+                title: Resources.labelWelcome,
+                subTitle: Resources.lableSigninSubTitle,
+              ),
           const Spacer(),
           Obx(
             () => Column(

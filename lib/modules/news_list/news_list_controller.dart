@@ -6,11 +6,11 @@ import 'package:news_app/data/repository/news_repository.dart';
 import 'package:news_app/data/repository/settings_preference_repository.dart';
 import 'package:news_app/modules/news_list/components/filter_bottomsheet.dart';
 import 'package:news_app/routes/app_routes.dart';
-import 'package:news_app/services/loading_progress_service.dart';
 import 'package:news_app/modules/base/base_controller.dart';
 import 'package:news_app/utils/constant.dart';
 import 'package:news_app/utils/enum.dart';
 import 'package:news_app/utils/extension.dart';
+import 'package:news_app/utils/global_widgets/helper.dart';
 import 'package:news_app/utils/page_helper.dart';
 import 'package:news_app/utils/styles/resources.dart';
 import 'package:intl/intl.dart';
@@ -22,7 +22,7 @@ class NewsListController extends BaseController with PageHelper {
     Resources.labelFilter,
     ...Resources.sourceList
   ];
-  final numberFormater = NumberFormat('#,###,###');
+  final thousandFormater = Helper().thousanFormater;
   RxList<ArticlesModel> articleList = RxList();
   Rxn<NewsListResponse> newsListResponse = Rxn();
   RxInt selectedChipIndex = 0.obs;
@@ -35,15 +35,9 @@ class NewsListController extends BaseController with PageHelper {
   eRequestType? requestType;
 
   @override
-  Future<void> onInit() async {
-    requestType = Get.arguments?[paramsRequestType];
-    searchKey.value = Get.arguments?[paramsSearchKey];
-    selectedCategory.value = Get.arguments?[paramsSelectedCategory];
-    // setNewsCategoryChiplist();
-    selectedChipIndex.value =
-        sourceListWithFilter.indexOf(selectedCategory.value);
-    _selectedCountry = await _userPrefRepository.readFilterCountry();
-    _selectedLanguage = await _userPrefRepository.readFilterLanguage();
+  onInit() {
+    receivedArguments();
+    initData();
     dataListeners();
     super.onInit();
   }
@@ -54,19 +48,29 @@ class NewsListController extends BaseController with PageHelper {
     super.onReady();
   }
 
-  // setNewsCategoryChiplist() {
-  //   if (requestType == eRequestType.search) {
-  //     sourceListWithFilter = [...Resources.sourceList];
-  //   } else {
-  //     sourceListWithFilter = [Resources.labelFilter, ...Resources.sourceList];
-  //   }
-  // }
+  // asign to variable as recieved data by arguments
+  receivedArguments() {
+    requestType = Get.arguments?[paramsRequestType];
+    searchKey.value = Get.arguments?[paramsSearchKey];
+    selectedCategory.value = Get.arguments?[paramsSelectedCategory];
+  }
+
+  initData() async {
+    selectedChipIndex.value =
+        sourceListWithFilter.indexOf(selectedCategory.value);
+    _selectedCountry = await _userPrefRepository.readFilterCountry();
+    _selectedLanguage = await _userPrefRepository.readFilterLanguage();
+  }
+
+  initialDataLoad() {
+    resetPage();
+    getData(true);
+  }
 
   dataListeners() {
     ever(newsListResponse, (_) {
       searchResultCount.value =
-          numberFormater.format(newsListResponse.value?.totalResults ?? 0);
-
+          thousandFormater.format(newsListResponse.value?.totalResults ?? 0);
       if (articleList.isEmpty) {
         articleList(newsListResponse.value?.articles ?? []);
       } else {
@@ -75,6 +79,7 @@ class NewsListController extends BaseController with PageHelper {
     });
   }
 
+  // main function for data fetch for screen
   Future getData(bool isInitialLoading) async {
     if (isFilterCategory()) {
       if (searchKey.value.isNotEmpty) {
@@ -83,20 +88,17 @@ class NewsListController extends BaseController with PageHelper {
             _selectedLanguage ?? Resources.defaultLanguage,
             page,
             isInitialLoading);
-      } else {
-        await getNewsByCategory(_selectedCountry ?? '', _selectedLanguage ?? '',
-            searchKey.value, selectedCategory.value, page, isInitialLoading);
       }
-    } else {
-      await getNewsByCategory(_selectedCountry ?? '', _selectedLanguage ?? '',
-          searchKey.value, selectedCategory.value, page, isInitialLoading);
+      return;
     }
+    await getNewsByCategory(_selectedCountry ?? '', _selectedLanguage ?? '',
+        searchKey.value, selectedCategory.value, page, isInitialLoading);
   }
 
   // Search news by passing search key word, language
   Future searchByFilterValues(String searchKey, String language, int page,
       bool isInitialLoading) async {
-        searchByString.value = '';
+    searchByString.value = '';
     loading.show(isVisible: isInitialLoading);
     final _response = await _newsRepository.everything(
         searchKey: searchKey, langauge: language, page: page);
@@ -104,13 +106,14 @@ class NewsListController extends BaseController with PageHelper {
     _response.fold((l) {
       showError(l);
     }, (r) {
-      searchByString.value = [searchKey].where((element) => element.isNotEmpty ).join(', ');
+      searchByString.value =
+          [searchKey].where((element) => element.isNotEmpty).join(', ');
       pageIncrement(r.totalResults ?? 0);
       newsListResponse.value = r;
     });
   }
 
-  // Get news by category and search key for user entered country
+  // Get news by category and search key
   Future getNewsByCategory(
       String country,
       String language,
@@ -118,7 +121,7 @@ class NewsListController extends BaseController with PageHelper {
       String catgory,
       int page,
       bool isInitialLoading) async {
-        searchByString.value = '';
+    searchByString.value = '';
     loading.show(isVisible: isInitialLoading);
     final _response = await _newsRepository.topHeadlines(
         country: country,
@@ -127,21 +130,26 @@ class NewsListController extends BaseController with PageHelper {
         searchKey: searchKeyWord,
         page: page);
     await loading.hide();
+
     _response.fold((l) {
       showError(l);
     }, (r) {
       pageIncrement(r.totalResults ?? 0);
-      searchByString.value = [searchKeyWord, catgory].where((element) => element.isNotEmpty ).join(', ');
+      searchByString.value = [searchKeyWord, catgory]
+          .where((element) => element.isNotEmpty)
+          .join(', ');
       newsListResponse.value = r;
     });
   }
 
+  // Tap on news card and open news detail screen
   onTapNewsCard(ArticlesModel item) {
     Get.toNamed(Routes.newsDetailsScreen, arguments: {
       paramsSelectedArticle: item,
     });
   }
 
+  // Tap on news category chip button
   onTapChipNewsCategory(int index, BuildContext context) {
     selectedCategory.value = sourceListWithFilter[index];
     selectedChipIndex(index);
@@ -155,12 +163,15 @@ class NewsListController extends BaseController with PageHelper {
 
   isNewsAvailable() => articleList.isNotEmpty;
 
+  // check data fetchin from API or Local db
   isLoading() => loading.isVisible;
 
+  // Perform the function when scrolling the news list
   onLoading() async {
     await getData(false);
   }
 
+  // Perform the function when pull down the news list
   onRefresh() async {
     refreshController.loadComplete();
     resetPage();
@@ -168,16 +179,13 @@ class NewsListController extends BaseController with PageHelper {
     refreshController.refreshCompleted();
   }
 
+  // page data and page reset before fetch the newest data
   resetPage() {
     page = 1;
     articleList.value = [];
   }
 
-  initialDataLoad() {
-    resetPage();
-    getData(true);
-  }
-
+  // perform when tap the search button on key board actions
   onSubmitSearchTextField(String value) {
     searchKey.value = value;
     initialDataLoad();
@@ -185,6 +193,7 @@ class NewsListController extends BaseController with PageHelper {
 
   isFilterCategory() => selectedCategory.value == Resources.labelFilter;
 
+  // open filter bottomsheet view
   void openFilterBottomSheet(BuildContext context) {
     context.showModal(FilterBottomSheet(
       selectedCountryKey: _selectedCountry,

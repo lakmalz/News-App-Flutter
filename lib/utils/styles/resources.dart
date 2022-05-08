@@ -58,10 +58,11 @@ class Resources {
   static String requestCancelError = 'Request was cancelled';
   static String errMsgInvalidEmail = 'Please insert a valid email';
   static String isRequired = 'is required';
-  static String labelWelcome = 'Welcome\nBack';
+  static String labelWelcome = 'Welcome';
   static String labelSignup = 'Sign up';
   static String labelSignin = 'Sign in';
-  static String labelCreateAccount = 'Create\nAccount';
+  static String labelCreateAccount = 'Create Account';
+  static String lableSignupSubTitle = 'Sign up to get started!';
   static String labelLogout = 'Logout';
   static String labelOk = 'Ok';
   static String labelConfirm = 'Confirm';
@@ -77,4 +78,5 @@ class Resources {
   static String lableHome = 'Home';
   static String lableSuccess = 'Success';
   static String successAlertUserRegitration = 'Congratulations, your account has been successfully created.';
+  static String lableSigninSubTitle = 'Sign in to continue!';
 }

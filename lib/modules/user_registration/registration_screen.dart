@@ -5,6 +5,7 @@ import 'package:news_app/modules/user_registration/registration_controller.dart'
 import 'package:news_app/utils/global_widgets/goback_appbar.dart';
 import 'package:news_app/utils/global_widgets/gradient_button.dart';
 import 'package:news_app/utils/global_widgets/input_field.dart';
+import 'package:news_app/utils/global_widgets/signin_header.dart';
 import 'package:news_app/utils/global_widgets/v_spacer.dart';
 import 'package:news_app/utils/styles/app_colors.dart';
 import 'package:news_app/utils/styles/dimensions.dart';
@@ -25,9 +26,9 @@ class RegistrationScreen extends GetView<RegistrationController> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               const Spacer(),
-              Text(
-                Resources.labelCreateAccount,
-                style: Styles.bold32pxTextStyle(AppColors.primaryColor),
+              SigninHeader(
+                title: Resources.labelCreateAccount,
+                subTitle: Resources.lableSignupSubTitle,
               ),
               const Expanded(
                 child: VSpacer(
