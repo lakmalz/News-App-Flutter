@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 import 'package:news_app/modules/home_screen/components/search_edit_field.dart';
 import 'package:news_app/modules/home_screen/components/top_heading_slider.dart';
 import 'package:news_app/modules/home_screen/home_controller.dart';
+import 'package:news_app/utils/enum.dart';
+import 'package:news_app/utils/global_widgets/default_padding.dart';
 import 'package:news_app/utils/global_widgets/h_spacer.dart';
 import 'package:news_app/utils/global_widgets/news_list_item_card.dart';
 import 'package:news_app/utils/global_widgets/refresh_custom_footer.dart';
@@ -15,15 +17,13 @@ import 'package:news_app/utils/styles/styles.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 class HomeScreen extends GetView<HomeController> {
-  HomeScreen({Key? key}) : super(key: key);
+  const HomeScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Padding(
-          //TODO use default padding
-          padding: const EdgeInsets.only(right: 16),
+        DefaultPadding(
           child: Row(
             children: [
               Expanded(
@@ -108,7 +108,7 @@ class HomeScreen extends GetView<HomeController> {
               style: Styles.smallNewyork18pxTextStyle(AppColors.blackColor)),
           const Spacer(),
           InkWell(
-            onTap: () => controller.navigateToNewsList(''),
+            onTap: () => controller.navigateToNewsList(eRequestType.headlines),
             child: Text(Resources.labelSeeAll,
                 style: Styles.semibold12pxTextStyle(
                     color: AppColors.secondaryColor)),

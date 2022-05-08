@@ -1,5 +1,6 @@
 // Argivemnt parameters name
 const paramsSearchKey = 'SEAR_KEY';
+const paramsRequestType = 'REQUEST_TYPE';
 const paramsSelectedArticle = 'SELECTED_ARTICLE';
 const paramsSelectedCategory = 'SELECTED_CATEGORY';
 

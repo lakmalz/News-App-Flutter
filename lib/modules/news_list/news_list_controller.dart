@@ -9,16 +9,16 @@ import 'package:news_app/routes/app_routes.dart';
 import 'package:news_app/services/loading_progress_service.dart';
 import 'package:news_app/utils/base_controller.dart';
 import 'package:news_app/utils/constant.dart';
+import 'package:news_app/utils/enum.dart';
 import 'package:news_app/utils/extension.dart';
 import 'package:news_app/utils/page_helper.dart';
 import 'package:news_app/utils/styles/resources.dart';
 import 'package:intl/intl.dart';
 
 class NewsListController extends BaseController with PageHelper {
-  final LoadingProgressService _loadingProgress = Get.find();
   final NewsRepository _newsRepository = Get.find();
   final UserPreferencesRepository _userPrefRepository = Get.find();
-  List<String> sourceListWithFilter = [
+  late List<String> sourceListWithFilter = [
     Resources.labelFilter,
     ...Resources.sourceList
   ];
@@ -32,11 +32,14 @@ class NewsListController extends BaseController with PageHelper {
   RxString searchResultCount = '0'.obs;
   RxString searchByString = ''.obs;
   RxString selectedCategory = Resources.labelFilter.obs;
+  eRequestType? requestType;
 
   @override
   Future<void> onInit() async {
+    requestType = Get.arguments?[paramsRequestType];
     searchKey.value = Get.arguments?[paramsSearchKey];
     selectedCategory.value = Get.arguments?[paramsSelectedCategory];
+    // setNewsCategoryChiplist();
     selectedChipIndex.value =
         sourceListWithFilter.indexOf(selectedCategory.value);
     _selectedCountry = await _userPrefRepository.readFilterCountry();
@@ -50,6 +53,14 @@ class NewsListController extends BaseController with PageHelper {
     initialDataLoad();
     super.onReady();
   }
+
+  // setNewsCategoryChiplist() {
+  //   if (requestType == eRequestType.search) {
+  //     sourceListWithFilter = [...Resources.sourceList];
+  //   } else {
+  //     sourceListWithFilter = [Resources.labelFilter, ...Resources.sourceList];
+  //   }
+  // }
 
   dataListeners() {
     ever(newsListResponse, (_) {
@@ -66,7 +77,16 @@ class NewsListController extends BaseController with PageHelper {
 
   Future getData(bool isInitialLoading) async {
     if (isFilterCategory()) {
-      await searchByKeyLanguage(searchKey.value, _selectedLanguage?? Resources.defaultLanguage, page, isInitialLoading);
+      if (searchKey.value.isNotEmpty) {
+        await searchByFilterValues(
+            searchKey.value,
+            _selectedLanguage ?? Resources.defaultLanguage,
+            page,
+            isInitialLoading);
+      } else {
+        await getNewsByCategory(_selectedCountry ?? '', _selectedLanguage ?? '',
+            searchKey.value, selectedCategory.value, page, isInitialLoading);
+      }
     } else {
       await getNewsByCategory(_selectedCountry ?? '', _selectedLanguage ?? '',
           searchKey.value, selectedCategory.value, page, isInitialLoading);
@@ -74,16 +94,17 @@ class NewsListController extends BaseController with PageHelper {
   }
 
   // Search news by passing search key word, language
-  // and sortby few sort category
-  Future searchByKeyLanguage(String searchKey, String language, int page,
+  Future searchByFilterValues(String searchKey, String language, int page,
       bool isInitialLoading) async {
+        searchByString.value = '';
     loadingProgress.show(isVisible: isInitialLoading);
-    final _response = await _newsRepository
-        .searchByKeyLanguage(searchKey, language, page: page);
+    final _response = await _newsRepository.everything(
+        searchKey: searchKey, langauge: language, page: page);
     await loadingProgress.hide();
     _response.fold((l) {
       showError(l);
     }, (r) {
+      searchByString.value = [searchKey].where((element) => element.isNotEmpty ).join(', ');
       pageIncrement(r.totalResults ?? 0);
       newsListResponse.value = r;
     });
@@ -97,10 +118,11 @@ class NewsListController extends BaseController with PageHelper {
       String catgory,
       int page,
       bool isInitialLoading) async {
+        searchByString.value = '';
     loadingProgress.show(isVisible: isInitialLoading);
-    final _response = await _newsRepository.newsByCategory(
+    final _response = await _newsRepository.topHeadlines(
         country: country,
-        category: catgory,
+        category: catgory == Resources.labelFilter ? '' : catgory,
         language: language,
         searchKey: searchKeyWord,
         page: page);
@@ -109,7 +131,7 @@ class NewsListController extends BaseController with PageHelper {
       showError(l);
     }, (r) {
       pageIncrement(r.totalResults ?? 0);
-      searchByString.value = [searchKeyWord, catgory].join(', ');
+      searchByString.value = [searchKeyWord, catgory].where((element) => element.isNotEmpty ).join(', ');
       newsListResponse.value = r;
     });
   }
@@ -133,7 +155,7 @@ class NewsListController extends BaseController with PageHelper {
 
   isNewsAvailable() => articleList.isNotEmpty;
 
-  isLoading() => _loadingProgress.isVisible;
+  isLoading() => loadingProgress.isVisible;
 
   onLoading() async {
     await getData(false);

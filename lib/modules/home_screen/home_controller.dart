@@ -8,6 +8,7 @@ import 'package:news_app/modules/dashboard/dashboard_controller.dart';
 import 'package:news_app/routes/app_routes.dart';
 import 'package:news_app/utils/base_controller.dart';
 import 'package:news_app/utils/constant.dart';
+import 'package:news_app/utils/enum.dart';
 import 'package:news_app/utils/page_helper.dart';
 import 'package:news_app/utils/styles/resources.dart';
 
@@ -21,6 +22,7 @@ class HomeController extends BaseController with PageHelper {
   RxList<ArticlesModel> breakingNewsList = RxList();
   RxList<ArticlesModel> articleList = RxList();
   String? _category = Resources.sourceList[0];
+
 
   @override
   void onInit() {
@@ -36,12 +38,13 @@ class HomeController extends BaseController with PageHelper {
 
   onSearch(String value) {
     if (value.isNotEmpty) {
-      navigateToNewsList(value);
+      navigateToNewsList(eRequestType.search, searchKey: value);
     }
   }
 
-  navigateToNewsList(String searchKey) {
+  navigateToNewsList(eRequestType requestType, {String searchKey = ''}) {
     Get.toNamed(Routes.newsListScreen, arguments: {
+      paramsRequestType: requestType,
       paramsSearchKey: searchKey,
       paramsSelectedCategory: _category
     });
@@ -53,6 +56,7 @@ class HomeController extends BaseController with PageHelper {
     });
   }
 
+  // onTap function for news category Chip button
   onTapChipNewsCategory(int index) {
     selectedChipIndex(index);
     _category = sourceList[index];
@@ -67,7 +71,7 @@ class HomeController extends BaseController with PageHelper {
     // Multiple requests sending at a time
     final responseList = await Future.wait([
       getBreakingNewsList(),
-      getNewsByCategory(_category ?? '', page),
+      getTopNewsSection(_category ?? '', page),
     ]);
 
     loadingProgress.hide();
@@ -86,10 +90,11 @@ class HomeController extends BaseController with PageHelper {
     }
   }
 
+  // Load news by news category ex: Business, Health
   loadNewsByCategory(bool initialLoading) async {
     loadingProgress.show(isVisible: initialLoading);
 
-    final response = await getNewsByCategory(_category ?? '', page);
+    final response = await getTopNewsSection(_category ?? '', page);
     await loadingProgress.hide();
     pageIncrement(response?.totalResults ?? 0);
 
@@ -100,18 +105,18 @@ class HomeController extends BaseController with PageHelper {
     }
   }
 
+  // Get breaking news from API
   Future<NewsListResponse?> getBreakingNewsList() async {
-    //TODO
-    final response = await _newsRepository.newsByCategory(country: 'us');
+    final response = await _newsRepository.topHeadlines(country: Resources.defaultCountry);
 
     NewsListResponse? data;
     response.fold((l) => showError(l), (r) => data = r);
     return data;
   }
 
-  Future<NewsListResponse?> getNewsByCategory(String category, int page) async {
-    final response = await _newsRepository.newsByCategory(
-        country: 'us', category: category, page: page);
+  // Get news from API for selected category
+  Future<NewsListResponse?> getTopNewsSection(String category, int page) async {
+    final response = await _newsRepository.topHeadlines(category: category, page: page);
 
     NewsListResponse? data;
     response.fold((l) => showError(l), (r) => data = r);
@@ -121,7 +126,7 @@ class HomeController extends BaseController with PageHelper {
   onLoading() async {
     await loadNewsByCategory(false);
   }
-
+  
   onRefresh() async {
     refreshController.loadComplete();
     resetPage();

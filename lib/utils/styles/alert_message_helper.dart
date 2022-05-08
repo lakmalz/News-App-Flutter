@@ -14,13 +14,14 @@ mixin AlertHelper {
     }
   }
 
-  showConfirmation(String message, Function onTapConfirm) {
+  showMessage(String title, String message, Function onTapConfirm) {
     final ctx = Get.context;
     if (ctx != null) {
       showDialog(
+        barrierDismissible: false,
         context: ctx,
-        builder: (_) => _showConfirmationAlert(
-            Resources.labelConfirm, message, onTapConfirm),
+        builder: (_) => _showMessageAlert(
+           title , message, onTapConfirm),
       );
     }
   }
@@ -36,9 +37,10 @@ mixin AlertHelper {
     return alert;
   }
 
-  AlertDialog _showConfirmationAlert(
+  AlertDialog _showMessageAlert(
       String? title, String? message, Function onTapConfirm) {
     AlertDialog alert = AlertDialog(
+
       title: Text(title ?? Resources.error),
       content: Text(message ?? Resources.somethingWentWrong),
       actions: [

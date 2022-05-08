@@ -27,7 +27,8 @@ class NewsListScreen extends GetView<NewsListController> {
                 () => SearchEditField(
                   initialText: controller.searchKey.value,
                   isEnable: false,
-                  onSubmitted: (value) => controller.onSubmitSearchTextField(value),
+                  onSubmitted: (value) =>
+                      controller.onSubmitSearchTextField(value),
                   onTapSuffixIcon: () {
                     Get.back();
                   },
@@ -41,23 +42,26 @@ class NewsListScreen extends GetView<NewsListController> {
                       controller.onTapChipNewsCategory(index, context),
                 ),
               ),
-              Obx(() => Container(
-                    margin: const EdgeInsets.only(top: 16, left: 16, right: 16),
-                    alignment: Alignment.topLeft,
-                    child: RichText(
-                      text: TextSpan(
-                        style: Styles.semibold14pxTextStyle(),
-                        children: [
-                          TextSpan(
-                              text:
-                                  'About ${controller.searchResultCount()} result for '),
-                          TextSpan(
-                              text: controller.searchByString(),
-                              style: Styles.bold14pxTextStyle()),
-                        ],
+              Obx(() => controller.isLoading()
+                  ? const SizedBox()
+                  : Container(
+                      margin:
+                          const EdgeInsets.only(top: 16, left: 16, right: 16),
+                      alignment: Alignment.topLeft,
+                      child: RichText(
+                        text: TextSpan(
+                          style: Styles.semibold14pxTextStyle(),
+                          children: [
+                            TextSpan(
+                                text:
+                                    'About ${controller.searchResultCount()} result for '),
+                            TextSpan(
+                                text: controller.searchByString(),
+                                style: Styles.bold14pxTextStyle()),
+                          ],
+                        ),
                       ),
-                    ),
-                  )),
+                    )),
               Expanded(
                 child: Padding(
                   padding: const EdgeInsets.only(top: 16.0),
@@ -70,7 +74,8 @@ class NewsListScreen extends GetView<NewsListController> {
                         controller: controller.refreshController,
                         onLoading: controller.onLoading,
                         onRefresh: controller.onRefresh,
-                        child: ListView.separated(
+                        child: 
+                        ListView.separated(
                           itemBuilder: (_, index) {
                             final _item = controller.articleList[index];
                             return NewsListItemCard(

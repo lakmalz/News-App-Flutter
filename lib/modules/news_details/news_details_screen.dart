@@ -8,6 +8,7 @@ import 'package:news_app/modules/news_details/components/details_background_imag
 import 'package:news_app/modules/news_details/news_details_controller.dart';
 import 'package:news_app/utils/global_widgets/back_icon.dart';
 import 'package:news_app/utils/global_widgets/created_date_text.dart';
+import 'package:news_app/utils/global_widgets/rounded_icon_button.dart';
 import 'package:news_app/utils/global_widgets/v_spacer.dart';
 import 'package:news_app/utils/styles/app_colors.dart';
 import 'package:news_app/utils/styles/dimensions.dart';
@@ -87,7 +88,17 @@ class NewsDetailsScreen extends GetView<NewsDetailsController> {
                     ],
                   ),
                 ),
-              ),))
+              ),)),
+          Positioned(
+            bottom: 44,
+            right: 16,
+            child: RoundedIconButton(
+              height: 56,
+              width: 56,
+                onPressed: () {},
+                icon: Image.asset(Resources.icAddFavourite),
+              ),
+          )
         ],
       ),
     );

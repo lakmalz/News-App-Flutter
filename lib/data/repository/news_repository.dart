@@ -9,39 +9,40 @@ import 'package:news_app/utils/styles/resources.dart';
 class NewsRepository {
   final ApiClient _apiClient = Get.find();
 
-  Future<Either<Failure, NewsListResponse>> searchByKeyLanguage(
-      String searchKey, String langauge,
-      {required int page}) async {
+  Future<Either<Failure, NewsListResponse>> everything(
+      {String searchKey = '',
+      String langauge = 'en',
+      required int page}) async {
     try {
-      final response = await _apiClient.searchByKeyLanguage(
-          searchKey, langauge, page, pageSize);
+      final response =
+          await _apiClient.everything(searchKey, langauge, page, pageSize);
 
       if (response.isSuccess()) {
         return Right(response);
       } else {
-        return Left(
-            Failure.init(title: Resources.error, message: response.message ?? ''));
+        return Left(Failure.init(
+            title: Resources.error, message: response.message ?? ''));
       }
     } catch (e) {
       return Left(Failure.init(error: e));
     }
   }
 
-  Future<Either<Failure, NewsListResponse>> newsByCategory(
-      {required String country,
+  Future<Either<Failure, NewsListResponse>> topHeadlines(
+      {String country = '',
       String category = '',
-      String language = 'en',
+      String language = Resources.defaultLanguage,
       String searchKey = '',
       int page = 1}) async {
     try {
-      final response = await _apiClient.topHeadline(
-          country, category, language, searchKey, page, pageSize);
+      final response = await _apiClient.topHeadlines(
+          country, category, language , searchKey, page, pageSize);
 
       if (response.isSuccess()) {
         return Right(response);
       } else {
-        return Left(
-            Failure.init(title: Resources.error, message: response.message ?? ''));
+        return Left(Failure.init(
+            title: Resources.error, message: response.message ?? ''));
       }
     } catch (e) {
       return Left(Failure.init(error: e));

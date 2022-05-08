@@ -7,7 +7,7 @@ class ProfileController extends BaseController{
   AuthController authController = Get.find();
 
   onTapLogout() {
-    showConfirmation(Resources.confirmAlertToLogout, (){
+    showMessage(Resources.labelConfirm, Resources.confirmAlertToLogout, (){
       authController.userLogout();
     });
   }

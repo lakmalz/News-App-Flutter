@@ -51,10 +51,16 @@ class RegistrationController extends BaseController {
   userRegistration(String email, String name, String password) async {
     loadingProgress.show();
 
-    final response = await _userRepository.userRegistration(email, name, password);
+    final response =
+        await _userRepository.userRegistration(email, name, password);
     await Future.delayed(const Duration(seconds: 2));
     loadingProgress.hide();
-    response.fold((error) => showError(error), (user) => navigateToLogin());
+    response.fold((error) => showError(error), (user) {
+      showMessage(Resources.lableSuccess, Resources.successAlertUserRegitration,
+          () {
+        navigateToLogin();
+      });
+    });
   }
 
   onTapSignup() {

@@ -54,8 +54,6 @@ class NewsListItemCard extends StatelessWidget {
       right: 16,
       bottom: 8,
       child: Row(
-        // TODO
-        // mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Expanded(
             child: Text(content ?? '',

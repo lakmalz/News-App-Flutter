@@ -35,6 +35,7 @@ class Resources {
   static String icRightArrow = parentPath + 'ic_right_arrow.png';
   static String icBack = parentPath + 'ic_back.png';
   static String icDelete = parentPath + 'ic_delete.png';
+  static String icAddFavourite = parentPath + 'ic_add_favourite.png';
 
   //Strings
   static String hintText = 'Dogecoin to the Moon';
@@ -70,5 +71,9 @@ class Resources {
   static String labelCountry = 'Country';
   static String labelLanguage = 'Language';
   static String lableSave = 'Save';
-  static String defaultLanguage = 'en';
+  static const String defaultLanguage = 'en';
+  static var defaultCountry = 'us';
+
+  static String lableSuccess = 'Success';
+  static String successAlertUserRegitration = 'Congratulations, your account has been successfully created.';
 }

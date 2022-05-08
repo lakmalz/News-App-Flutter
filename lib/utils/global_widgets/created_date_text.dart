@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:news_app/utils/styles/app_colors.dart';
 import 'package:news_app/utils/styles/styles.dart';
 
 class CreatedDateText extends StatelessWidget {
@@ -12,7 +13,7 @@ class CreatedDateText extends StatelessWidget {
     return Text(
       formatedDate(createdDate),
       textAlign: TextAlign.right,
-      style: Styles.semibold12pxTextStyle(),
+      style: Styles.semibold12pxTextStyle(color: AppColors.whiteColor),
     );
   }
 
