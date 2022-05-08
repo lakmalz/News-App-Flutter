@@ -1,19 +1,14 @@
-import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:news_app/data/models/articles_model.dart';
+import 'package:news_app/modules/news_details/components/blur_back_icon.dart';
 import 'package:news_app/modules/news_details/components/blur_title_container.dart';
+import 'package:news_app/modules/news_details/components/description_container.dart';
 import 'package:news_app/modules/news_details/components/details_background_image.dart';
+import 'package:news_app/modules/news_details/components/icon_add_favourite.dart';
+import 'package:news_app/modules/news_details/components/rounded_top_description.dart';
 import 'package:news_app/modules/news_details/news_details_controller.dart';
-import 'package:news_app/utils/global_widgets/back_icon.dart';
-import 'package:news_app/utils/global_widgets/created_date_text.dart';
-import 'package:news_app/utils/global_widgets/rounded_icon_button.dart';
-import 'package:news_app/utils/global_widgets/v_spacer.dart';
-import 'package:news_app/utils/styles/app_colors.dart';
 import 'package:news_app/utils/styles/dimensions.dart';
-import 'package:news_app/utils/styles/resources.dart';
-import 'package:news_app/utils/styles/styles.dart';
 
 class NewsDetailsScreen extends GetView<NewsDetailsController> {
   const NewsDetailsScreen({
@@ -29,41 +24,12 @@ class NewsDetailsScreen extends GetView<NewsDetailsController> {
             left: 0,
             right: 0,
             child: Obx(() {
-              return DetailsBackgrounImage(articleModel: controller.articleModel());
+              return DetailsBackgrounImage(
+                  articleModel: controller.articleModel());
             }),
           ),
-          Positioned(
-            top: 45,
-            left: 16,
-            child: Row(
-              children: [
-                BackIcon(icon: Resources.icBack),
-              ],
-            ),
-          ),
-          Positioned(
-              left: 0,
-              right: 0,
-              bottom: 0,
-              top: Dimensions.detailTopImageHeight - 20,
-              child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: const BorderRadius.only(
-                      topRight: Radius.circular(20),
-                      topLeft: Radius.circular(20)),
-                  color: Colors.grey.shade100,
-                ),
-                padding: const EdgeInsets.only(
-                  top: 16,
-                  left: 16,
-                  right: 16,
-                ),
-                child: Column(
-                  children: const [
-                    VSpacer(space: 10),
-                  ],
-                ),
-              )),
+          const BlurBackIcon(),
+          const RoundedDescription(),
           Positioned(
             left: 0,
             right: 0,
@@ -73,32 +39,10 @@ class NewsDetailsScreen extends GetView<NewsDetailsController> {
               articlesModel: controller.articleModel(),
             ),
           ),
-          Positioned(
-              left: 0,
-              right: 0,
-              top: Dimensions.detailTopImageHeight + 56,
-              child: Obx(() => SingleChildScrollView(
-                scrollDirection: Axis.vertical,
-                child: Padding(
-                  padding: const EdgeInsets.all(16),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(controller.articleModel()?.content??''),
-                    ],
-                  ),
-                ),
-              ),)),
-          Positioned(
-            bottom: 44,
-            right: 16,
-            child: RoundedIconButton(
-              height: 56,
-              width: 56,
-                onPressed: () {},
-                icon: Image.asset(Resources.icAddFavourite),
-              ),
-          )
+          DescriptionContainer(
+            content: controller.articleModel()?.content,
+          ),
+          const IconAddFavourite()
         ],
       ),
     );

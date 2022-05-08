@@ -7,6 +7,6 @@ class FavouriteScreen extends GetView<FavouriteController> {
 
   @override
   Widget build(BuildContext context) {
-    return const  Text('Fav');
+    return const SizedBox();
   }
 }

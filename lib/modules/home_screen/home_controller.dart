@@ -32,7 +32,7 @@ class HomeController extends BaseController with PageHelper {
 
   @override
   void onReady() {
-    loadData(true);//TODO remove this 
+    loadData(true);
     super.onReady();
   }
 
