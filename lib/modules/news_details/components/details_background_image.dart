@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/data/models/articles_model.dart';
+import 'package:news_app/utils/styles/app_colors.dart';
 import 'package:news_app/utils/styles/dimensions.dart';
 
 class DetailsBackgrounImage extends StatelessWidget {
@@ -16,11 +17,12 @@ class DetailsBackgrounImage extends StatelessWidget {
       width: double.maxFinite,
       height: Dimensions.detailTopImageHeight,
       decoration: BoxDecoration(
-          image: DecorationImage(
-        image:
-            NetworkImage(articleModel?.urlToImage ?? ''),
-        fit: BoxFit.cover,
-      )),
+        color: AppColors.blackColor.withOpacity(0.4),
+        image: DecorationImage(
+          image: NetworkImage(articleModel?.urlToImage ?? ''),
+          fit: BoxFit.cover,
+        ),
+      ),
     );
   }
 }
