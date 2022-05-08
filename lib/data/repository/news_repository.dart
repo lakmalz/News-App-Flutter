@@ -16,7 +16,6 @@ class NewsRepository {
     try {
       final response =
           await _apiClient.everything(searchKey, langauge, page, pageSize);
-
       if (response.isSuccess()) {
         return Right(response);
       } else {
@@ -37,7 +36,6 @@ class NewsRepository {
     try {
       final response = await _apiClient.topHeadlines(
           country, category, language , searchKey, page, pageSize);
-
       if (response.isSuccess()) {
         return Right(response);
       } else {

@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
-import 'package:news_app/modules/login/auth_controller.dart';
-import 'package:news_app/utils/base_controller.dart';
+import 'package:news_app/modules/auth/auth_controller.dart';
+import 'package:news_app/modules/base/base_controller.dart';
 import 'package:news_app/utils/styles/resources.dart';
 
 class ProfileController extends BaseController{

@@ -74,6 +74,7 @@ class Resources {
   static const String defaultLanguage = 'en';
   static var defaultCountry = 'us';
 
+  static String lableHome = 'Home';
   static String lableSuccess = 'Success';
   static String successAlertUserRegitration = 'Congratulations, your account has been successfully created.';
 }

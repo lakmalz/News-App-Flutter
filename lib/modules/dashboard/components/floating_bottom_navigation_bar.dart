@@ -70,7 +70,7 @@ class FloatingBottomNavigationBar extends StatelessWidget {
             ),
             const VSpacer(space: 1),
             Text(
-              'Home',
+              Resources.lableHome,
               style: Styles.regular10pxTextStyle(
                   color:
                       isSelected ? AppColors.brownColor : AppColors.greyColor),

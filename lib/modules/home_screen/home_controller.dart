@@ -6,7 +6,7 @@ import 'package:news_app/data/remote/response/news_list_response.dart';
 import 'package:news_app/data/repository/news_repository.dart';
 import 'package:news_app/modules/dashboard/dashboard_controller.dart';
 import 'package:news_app/routes/app_routes.dart';
-import 'package:news_app/utils/base_controller.dart';
+import 'package:news_app/modules/base/base_controller.dart';
 import 'package:news_app/utils/constant.dart';
 import 'package:news_app/utils/enum.dart';
 import 'package:news_app/utils/page_helper.dart';
@@ -32,7 +32,7 @@ class HomeController extends BaseController with PageHelper {
 
   @override
   void onReady() {
-    loadData(true);
+    loadData(true);//TODO remove this 
     super.onReady();
   }
 
@@ -66,7 +66,7 @@ class HomeController extends BaseController with PageHelper {
 
   // Initial home data get from cloud API
   loadData(bool initialLoading) async {
-    loadingProgress.show(isVisible: initialLoading);
+    loading.show(isVisible: initialLoading);
 
     // Multiple requests sending at a time
     final responseList = await Future.wait([
@@ -74,7 +74,7 @@ class HomeController extends BaseController with PageHelper {
       getTopNewsSection(_category ?? '', page),
     ]);
 
-    loadingProgress.hide();
+    loading.hide();
 
     // Received Breaking news list asign to  Rx value
     if (responseList[0] != null) {
@@ -92,10 +92,10 @@ class HomeController extends BaseController with PageHelper {
 
   // Load news by news category ex: Business, Health
   loadNewsByCategory(bool initialLoading) async {
-    loadingProgress.show(isVisible: initialLoading);
+    loading.show(isVisible: initialLoading);
 
     final response = await getTopNewsSection(_category ?? '', page);
-    await loadingProgress.hide();
+    await loading.hide();
     pageIncrement(response?.totalResults ?? 0);
 
     if (articleList.isEmpty) {

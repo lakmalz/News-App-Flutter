@@ -7,6 +7,7 @@ part 'api_client.g.dart';
 @RestApi(baseUrl: '')
 abstract class ApiClient {
   factory ApiClient(Dio dio, {String baseUrl}) = _ApiClient;
+  
 
   @GET('/everything')
   Future<NewsListResponse> everything(

@@ -46,14 +46,13 @@ class AuthRepository {
    return await secureStorage.secureRead(prefKeyEmail);
   }
 
+  // User registration data save to internal database
   Future<Either<Failure, User?>> userRegistration(
       String email, String name, String password) async {
     try {
       await userDao
           .insertPerson(User(email: email, name: name, password: password));
-
       final user = await userDao.findUserByEmail(email);
-      Get.log(user?.email ?? '');
       return  Right(user);
     } catch (e) {
       return Left(Failure.init(error: e, message: 'Email is already registered. Please try with another email'));

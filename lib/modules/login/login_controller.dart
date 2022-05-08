@@ -1,13 +1,12 @@
 import 'package:get/get.dart';
-import 'package:news_app/data/repository/auth_respository.dart';
+import 'package:news_app/modules/auth/auth_controller.dart';
 import 'package:news_app/routes/app_routes.dart';
-import 'package:news_app/services/loading_progress_service.dart';
-import 'package:news_app/utils/base_controller.dart';
+import 'package:news_app/modules/base/base_controller.dart';
 import 'package:news_app/utils/styles/resources.dart';
 import 'package:news_app/utils/validator.dart';
 
 class LoginController extends BaseController {
-  final AuthRepository _userRepository = Get.find();
+  final AuthController _authController = Get.find();
 
   RxString email = ''.obs;
   RxString password = ''.obs;
@@ -17,18 +16,24 @@ class LoginController extends BaseController {
 
   @override
   void onInit() {
-    ever(email, (String value) {
-      errEmail(Validator().email(value));
-    });
-    ever(password, (String value) {
-      errPassword(Validator().notEmpty(value, Resources.hintTextPassword));
-    });
-    everAll([email,password], (value){
-      enableLoginButton();
-    });
+    dataListeners();
     super.onInit();
   }
-  
+
+  // Field validation values listeners
+  dataListeners() {
+    final validator = Validator();
+    ever(email, (String value) {
+      errEmail(validator.email(value));
+    });
+    ever(password, (String value) {
+      errPassword(validator.notEmpty(value, Resources.hintTextPassword));
+    });
+    everAll([email, password], (value) {
+      enableLoginButton();
+    });
+  }
+
   // Login form validate
   // Login Button enble and disable if the form valid
   enableLoginButton() {
@@ -42,26 +47,11 @@ class LoginController extends BaseController {
     }
   }
 
-  // Check user is available in the local database
-  // Show error if user credentials are incorrect
-  // Navigate to dashboard if user credentials are correct
-  userLogIn(String email, String password) async {
-    loadingProgress.show();
-    await Future.delayed(const Duration(seconds: 4));
-    final response = await _userRepository.userAuthentication(email, password);
-    loadingProgress.hide();
-    response.fold((error) => showError(error), (user) => navigateToDashboard());
-  }
-
-  void onTapSignin(){
-    userLogIn(email.value, password.value);
+  void onTapSignin() {
+    _authController.userLogIn(email.value, password.value);
   }
 
   void onTapSignup() async {
     Get.toNamed(Routes.registrationScreen);
-  }
-
-  navigateToDashboard() {
-    Get.offAllNamed(Routes.dashboardScreen);
   }
 }

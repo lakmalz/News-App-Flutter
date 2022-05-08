@@ -25,7 +25,7 @@ class SearchEditField extends StatelessWidget {
   Widget build(BuildContext context) {
     textEditingController.text = initialText ?? '';
     return Padding(
-      padding: const EdgeInsets.all(16.0),
+      padding: const EdgeInsets.only(right:16),
       child: SizedBox(
         height: 38,
         child: TextField(

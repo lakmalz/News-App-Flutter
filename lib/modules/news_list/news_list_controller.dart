@@ -7,7 +7,7 @@ import 'package:news_app/data/repository/settings_preference_repository.dart';
 import 'package:news_app/modules/news_list/components/filter_bottomsheet.dart';
 import 'package:news_app/routes/app_routes.dart';
 import 'package:news_app/services/loading_progress_service.dart';
-import 'package:news_app/utils/base_controller.dart';
+import 'package:news_app/modules/base/base_controller.dart';
 import 'package:news_app/utils/constant.dart';
 import 'package:news_app/utils/enum.dart';
 import 'package:news_app/utils/extension.dart';
@@ -97,10 +97,10 @@ class NewsListController extends BaseController with PageHelper {
   Future searchByFilterValues(String searchKey, String language, int page,
       bool isInitialLoading) async {
         searchByString.value = '';
-    loadingProgress.show(isVisible: isInitialLoading);
+    loading.show(isVisible: isInitialLoading);
     final _response = await _newsRepository.everything(
         searchKey: searchKey, langauge: language, page: page);
-    await loadingProgress.hide();
+    await loading.hide();
     _response.fold((l) {
       showError(l);
     }, (r) {
@@ -119,14 +119,14 @@ class NewsListController extends BaseController with PageHelper {
       int page,
       bool isInitialLoading) async {
         searchByString.value = '';
-    loadingProgress.show(isVisible: isInitialLoading);
+    loading.show(isVisible: isInitialLoading);
     final _response = await _newsRepository.topHeadlines(
         country: country,
         category: catgory == Resources.labelFilter ? '' : catgory,
         language: language,
         searchKey: searchKeyWord,
         page: page);
-    await loadingProgress.hide();
+    await loading.hide();
     _response.fold((l) {
       showError(l);
     }, (r) {
@@ -155,7 +155,7 @@ class NewsListController extends BaseController with PageHelper {
 
   isNewsAvailable() => articleList.isNotEmpty;
 
-  isLoading() => loadingProgress.isVisible;
+  isLoading() => loading.isVisible;
 
   onLoading() async {
     await getData(false);

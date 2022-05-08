@@ -11,5 +11,6 @@ class NewsListResponse extends BaseResponse{
   List<ArticlesModel>? articles;
 
   factory NewsListResponse.fromJson(Map<String, dynamic> json) => _$NewsListResponseFromJson(json);
+  @override
   Map<String, dynamic> toJson() => _$NewsListResponseToJson(this);
 }

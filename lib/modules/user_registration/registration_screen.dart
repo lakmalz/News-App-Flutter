@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
-import 'package:news_app/modules/favourite_screen/favourite_controller.dart';
 import 'package:news_app/modules/user_registration/registration_controller.dart';
 import 'package:news_app/utils/global_widgets/goback_appbar.dart';
 import 'package:news_app/utils/global_widgets/gradient_button.dart';

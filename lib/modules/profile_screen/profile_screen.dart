@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
-import 'package:news_app/modules/login/auth_controller.dart';
+import 'package:news_app/modules/auth/auth_controller.dart';
 import 'package:news_app/modules/profile_screen/profile_controller.dart';
 import 'package:news_app/utils/global_widgets/border_button.dart';
 import 'package:news_app/utils/global_widgets/v_spacer.dart';
