@@ -10,7 +10,6 @@ class SingleSelectChipList extends StatelessWidget {
   
   @override
   Widget build(BuildContext context) {
-    //TODO
     return ChipList(
                   listOfChipNames: chipString,
                   activeBgColorList: [AppColors.primaryColor.withOpacity(0.8)],

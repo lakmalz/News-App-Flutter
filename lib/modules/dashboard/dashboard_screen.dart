@@ -64,7 +64,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
   updateTabContainers(int _index) {
     if (_index == eBottomNavigation.home.tabIndex) {
       if (_stack[_index] is SizedBox) {
-        _stack[_index] = HomeScreen();
+        _stack[_index] = const HomeScreen();
       }
     }
     if (_index == eBottomNavigation.favourite.tabIndex) {

@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:news_app/modules/dashboard/components/bottom_menu_icon.dart';
 
 import 'package:news_app/utils/enum.dart';
 import 'package:news_app/utils/extension.dart';
-import 'package:news_app/utils/global_widgets/v_spacer.dart';
 import 'package:news_app/utils/styles/app_colors.dart';
 import 'package:news_app/utils/styles/resources.dart';
-import 'package:news_app/utils/styles/styles.dart';
 
 class FloatingBottomNavigationBar extends StatelessWidget {
   const FloatingBottomNavigationBar({
@@ -31,17 +30,17 @@ class FloatingBottomNavigationBar extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            _buildTabIcon(
+            BottomMenuIcon(
               icon: Resources.icHome,
               isSelected: selectedIndex == eBottomNavigation.home.tabIndex,
               onPressed: () => onTap(eBottomNavigation.home.tabIndex),
             ),
-            _buildTabIcon(
+            BottomMenuIcon(
               icon: Resources.icFavourite,
               isSelected: selectedIndex == eBottomNavigation.favourite.tabIndex,
               onPressed: () => onTap(eBottomNavigation.favourite.tabIndex),
             ),
-            _buildTabIcon(
+            BottomMenuIcon(
               icon: Resources.icProfile,
               isSelected: selectedIndex == eBottomNavigation.profile.tabIndex,
               onPressed: () => onTap(eBottomNavigation.profile.tabIndex),
@@ -52,39 +51,10 @@ class FloatingBottomNavigationBar extends StatelessWidget {
     );
   }
 
-  Widget _buildTabIcon({
-    required String icon,
-    required bool isSelected,
-    required VoidCallback onPressed,
-  }) {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(34, 12, 24, 8),
-      child: InkWell(
-        onTap: onPressed,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset(
-              icon,
-              color: isSelected ? AppColors.primaryColor : AppColors.greyColor,
-            ),
-            const VSpacer(space: 1),
-            Text(
-              Resources.lableHome,
-              style: Styles.regular10pxTextStyle(
-                  color:
-                      isSelected ? AppColors.brownColor : AppColors.greyColor),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
   _boxDecoration() => BoxDecoration(
         boxShadow: <BoxShadow>[
           BoxShadow(
-            color: Colors.black87.withOpacity(0.05), //TODO
+            color: Colors.black87.withOpacity(0.05), 
             offset: const Offset(0, 25),
             blurRadius: 40,
           ),

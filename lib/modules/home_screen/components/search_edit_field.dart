@@ -24,37 +24,34 @@ class SearchEditField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     textEditingController.text = initialText ?? '';
-    return Padding(
-      padding: const EdgeInsets.only(right:16),
-      child: SizedBox(
-        height: 38,
-        child: TextField(
-          controller: textEditingController,
-          textInputAction: TextInputAction.search,
-          onSubmitted: (text) {
-            context.dimissKeyBoard();
-            if (onSubmitted != null) {
-              onSubmitted!(text);
-            }
-          },
-          onChanged: onChanged,
-          maxLines: 1,
-          textAlign: TextAlign.left,
-          style:
-              Styles.semibold12pxTextStyle(color: AppColors.focusedTextColor),
-          decoration: InputDecoration(
-            contentPadding: const EdgeInsets.symmetric(horizontal: 16),
-            suffixIcon: InkWell(
-                onTap: onTapSuffixIcon,
-                child: Image.asset(
-                    isEnable ? Resources.icSearch : Resources.icCancel)),
-            hintText: Resources.hintText,
-            hintStyle: Styles.semibold12pxTextStyle(
-                color: AppColors.greyHintTextColor),
-            focusedBorder: foucuedBorder(context),
-            enabledBorder: enabledBorder(context),
-            border: enabledBorder(context),
-          ),
+    return SizedBox(
+      height: 38,
+      child: TextField(
+        controller: textEditingController,
+        textInputAction: TextInputAction.search,
+        onSubmitted: (text) {
+          context.dimissKeyBoard();
+          if (onSubmitted != null) {
+            onSubmitted!(text);
+          }
+        },
+        onChanged: onChanged,
+        maxLines: 1,
+        textAlign: TextAlign.left,
+        style:
+            Styles.semibold12pxTextStyle(color: AppColors.focusedTextColor),
+        decoration: InputDecoration(
+          contentPadding: const EdgeInsets.symmetric(horizontal: 16),
+          suffixIcon: InkWell(
+              onTap: onTapSuffixIcon,
+              child: Image.asset(
+                  isEnable ? Resources.icSearch : Resources.icCancel)),
+          hintText: Resources.hintText,
+          hintStyle: Styles.semibold12pxTextStyle(
+              color: AppColors.greyHintTextColor),
+          focusedBorder: foucuedBorder(context),
+          enabledBorder: enabledBorder(context),
+          border: enabledBorder(context),
         ),
       ),
     );
