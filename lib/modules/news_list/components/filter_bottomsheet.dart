@@ -4,6 +4,7 @@ import 'package:news_app/data/models/selectable_chip_model.dart';
 import 'package:news_app/modules/news_list/components/single_choice_chips.dart';
 import 'package:news_app/utils/global_widgets/default_padding.dart';
 import 'package:news_app/utils/global_widgets/gradient_button.dart';
+import 'package:news_app/utils/global_widgets/modal_drag_handle.dart';
 import 'package:news_app/utils/global_widgets/v_spacer.dart';
 import 'package:news_app/utils/styles/app_colors.dart';
 import 'package:news_app/utils/styles/resources.dart';
@@ -28,9 +29,16 @@ class FilterBottomSheet extends StatelessWidget {
         borderRadius: const BorderRadius.vertical(top: Radius.circular(15)),
       ),
       child: Stack(
-        //Todo
-        // const ModalDragHandle(),
         children: [
+          Positioned(
+            top: 8,
+            left: 0,
+            right: 0,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: const [ModalDragHandle()],
+            ),
+          ),
           SingleChildScrollView(
             child: DefaultPadding(
               child: Column(
@@ -118,7 +126,6 @@ class FilterBottomSheet extends StatelessWidget {
         side: BorderSide(width: 1, color: AppColors.blackColor),
       ),
       onPressed: () {},
-      
       icon: Image.asset(Resources.icDelete),
       label: Text(
         Resources.labelReset,

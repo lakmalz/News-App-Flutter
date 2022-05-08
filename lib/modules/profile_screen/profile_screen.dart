@@ -10,7 +10,7 @@ import 'package:news_app/utils/styles/resources.dart';
 
 class ProfileScreen extends GetView<ProfileController> {
   const ProfileScreen({Key? key}) : super(key: key);
-  //todo set logout confiremation
+  
   @override
   Widget build(BuildContext context) {
     return Column(

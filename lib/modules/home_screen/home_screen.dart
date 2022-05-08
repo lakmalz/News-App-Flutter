@@ -6,6 +6,7 @@ import 'package:news_app/modules/home_screen/components/top_heading_slider.dart'
 import 'package:news_app/modules/home_screen/home_controller.dart';
 import 'package:news_app/utils/enum.dart';
 import 'package:news_app/utils/global_widgets/default_padding.dart';
+import 'package:news_app/utils/global_widgets/h_spacer.dart';
 import 'package:news_app/utils/global_widgets/news_list_item_card.dart';
 import 'package:news_app/utils/global_widgets/refresh_custom_footer.dart';
 import 'package:news_app/utils/global_widgets/rounded_icon_button.dart';
@@ -30,6 +31,8 @@ class HomeScreen extends GetView<HomeController> {
                     onSubmitted: (value) => controller.onSearch(value),
                   ),
                 ),
+                const HSpacer(space: 16),
+
                 RoundedIconButton(
                   onPressed: () {},
                   icon: Image.asset(Resources.icBell),

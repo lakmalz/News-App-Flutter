@@ -10,7 +10,7 @@ import 'package:news_app/modules/base/base_controller.dart';
 import 'package:news_app/utils/constant.dart';
 import 'package:news_app/utils/enum.dart';
 import 'package:news_app/utils/extension.dart';
-import 'package:news_app/utils/global_widgets/helper.dart';
+import 'package:news_app/utils/helper.dart';
 import 'package:news_app/utils/page_helper.dart';
 import 'package:news_app/utils/styles/resources.dart';
 import 'package:intl/intl.dart';
