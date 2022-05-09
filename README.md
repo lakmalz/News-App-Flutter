@@ -8,6 +8,10 @@ This repo is a basic News application. It is based on **GetX**. More info about 
 
 ### Screens
 
+<p>
+    <img width="512px" src="https://github.com/lakmalz/News-App-Flutter/blob/master/screenshots/Untitled.png"/>
+</p>
+
 
 
 ## Getting Started
