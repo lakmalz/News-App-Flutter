@@ -116,4 +116,3 @@ libs
 └───app_binding.dart
 └───main.dart
 ```
-
