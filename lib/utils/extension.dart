@@ -12,6 +12,16 @@ extension BottomNavigation on eBottomNavigation {
         return 2;
     }
   }
+  String get name {
+    switch (this) {
+      case eBottomNavigation.home:
+        return 'Home';
+      case eBottomNavigation.favourite:
+        return 'Favourite';
+      case eBottomNavigation.profile:
+        return 'Profile';
+    }
+  }
 }
 
 extension ContextHelper on BuildContext{

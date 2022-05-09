@@ -2,15 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:news_app/modules/user_registration/registration_controller.dart';
+import 'package:news_app/utils/global_widgets/eye_icon.dart';
 import 'package:news_app/utils/global_widgets/goback_appbar.dart';
 import 'package:news_app/utils/global_widgets/gradient_button.dart';
 import 'package:news_app/utils/global_widgets/input_field.dart';
 import 'package:news_app/utils/global_widgets/signin_header.dart';
 import 'package:news_app/utils/global_widgets/v_spacer.dart';
-import 'package:news_app/utils/styles/app_colors.dart';
 import 'package:news_app/utils/styles/dimensions.dart';
 import 'package:news_app/utils/styles/resources.dart';
-import 'package:news_app/utils/styles/styles.dart';
 
 class RegistrationScreen extends GetView<RegistrationController> {
   const RegistrationScreen({Key? key}) : super(key: key);
@@ -58,6 +57,9 @@ class RegistrationScreen extends GetView<RegistrationController> {
                       space: 16,
                     ),
                     InputField(
+                        suffixIcon: EyeIcon(
+                            enableObscureText: controller.enableObscureText),
+                        obscureText: controller.enableObscureText(),
                         errorMessage: controller.errPassword(),
                         onChanged: (text) {
                           controller.password.value = text;
@@ -76,8 +78,10 @@ class RegistrationScreen extends GetView<RegistrationController> {
                   onPressed: () => controller.onTapSignup(),
                 ),
               ),
-              const VSpacer(
-                space: 20,
+              const Expanded(
+                child: VSpacer(
+                  space: 20,
+                ),
               ),
               Expanded(
                 child: VSpacer(

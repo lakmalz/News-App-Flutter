@@ -4,6 +4,7 @@ import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:news_app/modules/login/login_controller.dart';
 import 'package:news_app/utils/global_widgets/app_scafold.dart';
 import 'package:news_app/utils/global_widgets/border_button.dart';
+import 'package:news_app/utils/global_widgets/eye_icon.dart';
 import 'package:news_app/utils/global_widgets/gradient_button.dart';
 import 'package:news_app/utils/global_widgets/input_field.dart';
 import 'package:news_app/utils/global_widgets/signin_header.dart';
@@ -11,7 +12,6 @@ import 'package:news_app/utils/global_widgets/v_spacer.dart';
 import 'package:news_app/utils/styles/app_colors.dart';
 import 'package:news_app/utils/styles/dimensions.dart';
 import 'package:news_app/utils/styles/resources.dart';
-import 'package:news_app/utils/styles/styles.dart';
 
 class LoginScreen extends GetView<LoginController> {
   const LoginScreen({Key? key}) : super(key: key);
@@ -24,9 +24,9 @@ class LoginScreen extends GetView<LoginController> {
         children: [
           const Spacer(),
           SigninHeader(
-                title: Resources.labelWelcome,
-                subTitle: Resources.lableSigninSubTitle,
-              ),
+            title: Resources.labelWelcome,
+            subTitle: Resources.lableSigninSubTitle,
+          ),
           const Spacer(),
           Obx(
             () => Column(
@@ -42,6 +42,9 @@ class LoginScreen extends GetView<LoginController> {
                   space: 16,
                 ),
                 InputField(
+                  suffixIcon:
+                      EyeIcon(enableObscureText: controller.enableObscureText),
+                  obscureText: controller.enableObscureText(),
                   hintText: Resources.hintTextPassword,
                   errorMessage: controller.errPassword.value,
                   onChanged: (text) {

@@ -31,16 +31,19 @@ class FloatingBottomNavigationBar extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             BottomMenuIcon(
+              name: eBottomNavigation.home.name,
               icon: Resources.icHome,
               isSelected: selectedIndex == eBottomNavigation.home.tabIndex,
               onPressed: () => onTap(eBottomNavigation.home.tabIndex),
             ),
             BottomMenuIcon(
+              name: eBottomNavigation.favourite.name,
               icon: Resources.icFavourite,
               isSelected: selectedIndex == eBottomNavigation.favourite.tabIndex,
               onPressed: () => onTap(eBottomNavigation.favourite.tabIndex),
             ),
             BottomMenuIcon(
+              name: eBottomNavigation.profile.name,
               icon: Resources.icProfile,
               isSelected: selectedIndex == eBottomNavigation.profile.tabIndex,
               onPressed: () => onTap(eBottomNavigation.profile.tabIndex),
@@ -54,7 +57,7 @@ class FloatingBottomNavigationBar extends StatelessWidget {
   _boxDecoration() => BoxDecoration(
         boxShadow: <BoxShadow>[
           BoxShadow(
-            color: Colors.black87.withOpacity(0.05), 
+            color: Colors.black87.withOpacity(0.05),
             offset: const Offset(0, 25),
             blurRadius: 40,
           ),

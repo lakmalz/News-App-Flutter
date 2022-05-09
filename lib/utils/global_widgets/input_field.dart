@@ -6,6 +6,8 @@ import 'package:news_app/utils/styles/styles.dart';
 class InputField extends StatelessWidget {
   InputField(
       {Key? key,
+      this.suffixIcon,
+      this.obscureText = false,
       this.hintText,
       this.onChanged,
       this.inputFormatters,
@@ -15,6 +17,8 @@ class InputField extends StatelessWidget {
   Function(String)? onChanged;
   final List<TextInputFormatter>? inputFormatters;
   final String errorMessage;
+  final bool obscureText;
+  final Widget? suffixIcon;
 
   @override
   Widget build(BuildContext context) {
@@ -22,12 +26,15 @@ class InputField extends StatelessWidget {
       onChanged: onChanged,
       inputFormatters: inputFormatters,
       maxLines: 1,
+      obscureText: obscureText,
       textAlign: TextAlign.left,
       style: Styles.semibold12pxTextStyle(color: AppColors.focusedTextColor),
       decoration: InputDecoration(
+        suffixIcon: suffixIcon,
         contentPadding: const EdgeInsets.symmetric(horizontal: 16),
         hintText: hintText,
-        hintStyle: Styles.semibold12pxTextStyle(color: AppColors.greyHintTextColor),
+        hintStyle:
+            Styles.semibold12pxTextStyle(color: AppColors.greyHintTextColor),
         focusedBorder: foucuedBorder(context),
         enabledBorder: enabledBorder(context),
         errorBorder: enabledBorder(context),

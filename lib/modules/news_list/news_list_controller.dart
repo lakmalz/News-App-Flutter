@@ -88,8 +88,8 @@ class NewsListController extends BaseController with PageHelper {
             _selectedLanguage ?? Resources.defaultLanguage,
             page,
             isInitialLoading);
+        return;
       }
-      return;
     }
     await getNewsByCategory(_selectedCountry ?? '', _selectedLanguage ?? '',
         searchKey.value, selectedCategory.value, page, isInitialLoading);

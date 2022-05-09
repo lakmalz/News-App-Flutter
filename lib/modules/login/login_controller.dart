@@ -13,6 +13,7 @@ class LoginController extends BaseController {
   RxString errEmail = ''.obs;
   RxString errPassword = ''.obs;
   RxBool isEnableButton = false.obs;
+  RxBool enableObscureText = true.obs;
 
   @override
   void onInit() {

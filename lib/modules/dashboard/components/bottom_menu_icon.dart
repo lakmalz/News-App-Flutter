@@ -8,10 +8,12 @@ class BottomMenuIcon extends StatelessWidget {
   const BottomMenuIcon(
       {Key? key,
       required this.icon,
+      required this.name,
       required this.isSelected,
       required this.onPressed})
       : super(key: key);
   final String icon;
+  final String name;
   final bool isSelected;
   final VoidCallback onPressed;
   
@@ -30,7 +32,7 @@ class BottomMenuIcon extends StatelessWidget {
             ),
             const VSpacer(space: 1),
             Text(
-              Resources.lableHome,
+              name,
               style: Styles.regular10pxTextStyle(
                   color:
                       isSelected ? AppColors.brownColor : AppColors.greyColor),

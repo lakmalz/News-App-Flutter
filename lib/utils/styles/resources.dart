@@ -36,6 +36,8 @@ class Resources {
   static String icBack = parentPath + 'ic_back.png';
   static String icDelete = parentPath + 'ic_delete.png';
   static String icAddFavourite = parentPath + 'ic_add_favourite.png';
+  static String icEye = parentPath + 'ic_eye.png';
+  static String icEyeOff = parentPath + 'ic_eye_off.png';
 
   //Strings
   static String hintText = 'Dogecoin to the Moon';
