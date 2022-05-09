@@ -9,20 +9,20 @@ This repo is a basic News application. It is based on **GetX**. More info about 
 ### Screens
 
 <p>
-    <img width="256px" src="https://github.com/lakmalz/News-App-Flutter/blob/master/screenshots/Untitled.png"/>
+    <img width="256px" src="https://github.com/lakmalz/News-App-Flutter/blob/master/screenshots/Untitled.png?raw=true"/>
 </p>
 
 <p>
-    <img width="256px" src="https://github.com/lakmalz/News-App-Flutter/blob/master/screenshots/Untitled1.png"/>
+    <img width="256px" src="https://github.com/lakmalz/News-App-Flutter/blob/master/screenshots/Untitled1.png?raw=true"/>
 </p>
 
 
 <p>
-    <img width="256px" src="https://github.com/lakmalz/News-App-Flutter/blob/master/screenshots/filter.png"/>
+    <img width="256px" src="https://github.com/lakmalz/News-App-Flutter/blob/master/screenshots/filter.png?raw=true"/>
 </p>
 
 <p>
-    <img width="256px" src="https://github.com/lakmalz/News-App-Flutter/blob/master/screenshots/details.png"/>
+    <img width="256px" src="https://github.com/lakmalz/News-App-Flutter/blob/master/screenshots/details.png?raw=true"/>
 </p>
 
 ## Getting Started
