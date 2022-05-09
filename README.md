@@ -3,7 +3,7 @@
 This repo is a basic News application. It is based on **GetX**. More info about [GetX](https://pub.dev/packages/get) here. The app has been setup to work with [retrofit](https://pub.dev/packages/retrofit), [dio](https://pub.dev/packages/dio), [json_annotation](https://pub.dev/packages/json_annotation) and [intl_utils](https://pub.dev/packages/intl_utils)
 
 ### Demo video iOS and Android
-[![Watch the video](https://youtu.be/vEwSxu1hu3w)
+(https://youtu.be/vEwSxu1hu3w)
 
 
 ### Screens
