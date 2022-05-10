@@ -19,7 +19,7 @@ class Application extends GetView<AuthController> {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false, 
-      initialBinding: AppBinding(),
+      initialBinding: AppBinding(context),
       getPages: AppPages.routes,
       initialRoute: AppPages.initialScreen,
       builder: EasyLoading.init(),

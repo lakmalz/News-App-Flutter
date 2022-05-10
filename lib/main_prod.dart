@@ -9,7 +9,7 @@ void main() async {
   await DenpendencyInjection.init();
   
   final configuredApp = AppConfig(
-    baseUrl: APIConstant.baseUrl,
+    baseUrl: APIConstant.baseUrlProd,
     child: const Application(),
   );
   return runApp(configuredApp);

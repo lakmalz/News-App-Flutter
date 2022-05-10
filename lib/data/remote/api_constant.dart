@@ -1,5 +1,6 @@
 class APIConstant {
-  static const baseUrl = 'https://newsapi.org/v2';
+  static const baseUrlDev = 'https://newsapi.org/v2';
+  static const baseUrlProd = 'https://newsapi.org/v2';
   static const defaultTimeout = Duration.millisecondsPerMinute;
   static const contentType = 'application/json';
   static const xAPIKey = 'X-Api-Key';

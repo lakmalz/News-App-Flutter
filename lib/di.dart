@@ -13,10 +13,7 @@ import 'package:news_app/utils/constant.dart';
 class DenpendencyInjection {
   static Future<void> init() async {
     await Get.putAsync(() async => LoadingProgressService());
-
-    final networkManager = NetworkManager(baseUrl: APIConstant.baseUrl);
-    Get.lazyPut(() => ApiClient(networkManager.dio), fenix: true);
-
+ 
     final database = await $FloorAppDatabase.databaseBuilder(dbName).build();
     final userDao = database.userDao;
     final secureStorage =

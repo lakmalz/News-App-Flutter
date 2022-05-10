@@ -23,6 +23,8 @@ https://www.youtube.com/embed/vEwSxu1hu3w
 3. Run `flutter pub run intl_utils:generate`
 4. Run `flutter pub run build_runner build --delete-conflicting-outputs`
 5. Run app.
+    `flutter run –-flavor dev -t lib/main_dev.dart' for devlopment environment
+    `flutter run –-flavor prod -t lib/main_prod.dart' for production environment
 
 ### Libraries Used
 
