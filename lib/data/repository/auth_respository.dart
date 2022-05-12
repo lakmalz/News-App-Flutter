@@ -47,6 +47,7 @@ class AuthRepository {
   }
 
   // User registration data save to internal database
+  // return as a error if the user is exist, 
   Future<Either<Failure, User?>> userRegistration(
       String email, String name, String password) async {
     try {
