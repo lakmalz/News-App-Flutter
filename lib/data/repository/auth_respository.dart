@@ -43,19 +43,29 @@ class AuthRepository {
   }
 
   Future<String?> getLoggedUserEmail() async {
-   return await secureStorage.secureRead(prefKeyEmail);
+    return await secureStorage.secureRead(prefKeyEmail);
   }
 
   // User registration data save to internal database
   Future<Either<Failure, User?>> userRegistration(
       String email, String name, String password) async {
     try {
+      final user = await userDao.findUserByEmail(email);
+
+      if (user != null) {
+        return Left(Failure.init(
+            error: Resources.error,
+            message:
+                Resources.alertMsgUserAlreadyExist));
+      }
+
       await userDao
           .insertPerson(User(email: email, name: name, password: password));
-      final user = await userDao.findUserByEmail(email);
-      return  Right(user);
+      final createdUer = await userDao.findUserByEmail(email);
+      return Right(createdUer);
     } catch (e) {
-      return Left(Failure.init(error: e, message: 'Email is already registered. Please try with another email'));
+      return Left(
+          Failure.init(error: e, message: Resources.somethingWentWrong));
     }
   }
 

@@ -79,6 +79,9 @@ class Resources {
 
   static String lableHome = 'Home';
   static String lableSuccess = 'Success';
-  static String successAlertUserRegitration = 'Congratulations, your account has been successfully created.';
+  static String successAlertUserRegitration =
+      'Congratulations, your account has been successfully created.';
   static String lableSigninSubTitle = 'Sign in to continue!';
+  static String alertMsgUserAlreadyExist =
+      'Email is already registered. Please try with another email';
 }
